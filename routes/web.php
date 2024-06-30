@@ -24,11 +24,35 @@ Route::get("/",[HomeController::class,"index"]);
 
 Route::get("/users",[AdminController::class,"user"]);
 
+Route::get("/deletemenu/{id}",[AdminController::class,"deletemenu"]);
+
 Route::get("/foodmenu",[AdminController::class,"foodmenu"])->name('foodmenu');
 
 Route::post("/uploadfood",[AdminController::class,"upload"]);
 
 Route::get("/deleteuser/{id}",[AdminController::class,"deleteuser"]);
+
+Route::get("/updateview/{id}",[AdminController::class,"updateview"]);
+
+Route::post("/update/{id}",[AdminController::class,"update"]);
+
+Route::post("/reservation",[AdminController::class,"reservation"]);
+
+Route::get("/viewreservation",[AdminController::class,"viewreservation"]);
+
+Route::get("/viewchef",[AdminController::class,"viewchef"]);
+
+Route::post("/uploadchef",[AdminController::class,"uploadchef"]);
+
+Route::get("/updatechef/{id}",[AdminController::class,"updatechef"]);
+
+Route::post("/updatefoodchef/{id}",[AdminController::class,"updatefoodchef"]);
+
+Route::get("/deletechef/{id}",[AdminController::class,"deletechef"]);
+
+
+
+
 
 Route::get("/redirects",[HomeController::class,"redirects"]);
 
@@ -36,6 +60,9 @@ Route::get("/Addfoodmenu", function (){
     return view ('admin.Addfoodmenu');
 })->name('AddFood');
 
+Route::get("/Addchef", function (){
+    return view ('admin.Addchef');
+})->name('AddChef');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[HomeController::class,"redirects"])->name('dashboard');
