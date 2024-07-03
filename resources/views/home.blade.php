@@ -52,7 +52,7 @@ https://templatemo.com/tm-558-klassy-cafe
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/klassy-logo.png" align="klassy cafe html template">
+                            <img src="assets/images/klassy-logo.png" align="klassy cafe">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -109,9 +109,9 @@ https://templatemo.com/tm-558-klassy-cafe
 
 
                         </ul>
-                        <a class='menu-trigger'>
+                        <!-- <a class='menu-trigger'>
                             <span>Menu</span>
-                        </a>
+                        </a> -->
                         <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
@@ -128,7 +128,7 @@ https://templatemo.com/tm-558-klassy-cafe
                     <div class="left-content">
                         <div class="inner-content">
                             <h4>KlassyCafe</h4>
-                            <h6>THE BEST EXPERIENCE</h6>
+                            <h6>THE BEST CAFE EXPERIENCE</h6>
                             <div class="main-white-button scroll-to-section">
                                 <a href="#reservation">Make A Reservation</a>
                             </div>
@@ -498,9 +498,9 @@ https://templatemo.com/tm-558-klassy-cafe
                 </div>
                 <div class="col-lg-4 col-xs-12">
                     <div class="left-text-content">
-                        <p>© Copyright Klassy Cafe Co.
+                        <p>klassy Cafe
 
-                            <br>Design: TemplateMo
+                            <br>Design By Isu
                         </p>
                     </div>
                 </div>

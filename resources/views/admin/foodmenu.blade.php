@@ -45,7 +45,7 @@
                     <td>{{$data->title}}</td>
                     <td>{{$data->price}}</td>
                     <td>{{$data->description}}</td>
-                    <td><img height="200px" width="200" src="/foodimage/{{$data->image}}"></td>
+                    <td><img height="100px" width="100" src="/foodimage/{{$data->image}}"></td>
                     
                     <td><a href="{{url('/deletemenu',$data->id)}}">Delete</a></td>
                     

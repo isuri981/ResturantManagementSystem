@@ -15,16 +15,18 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data=food::all();
+        $foods=food::all();
 
         $data2=foodchef::all();
 
-        return view("home",compact("data", "data2"));
+        return view("home",compact("foods", "data2"));
     }
 
     public function redirects()
     {
         $data=food::all();
+
+        $data2=foodchef::all();
         
         $usertype= Auth::user()->usertype;
 
@@ -35,7 +37,7 @@ class HomeController extends Controller
 
         else
         {
-           return view('home',compact('data')); 
+           return view('home',compact('data', 'data2')); 
         }
 
     

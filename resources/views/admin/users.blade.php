@@ -47,6 +47,7 @@
                     <td>{{$data->email}}</td>
 
                     @if($data->usertype=="0")
+                    
                     <td><a href = "{{url('/deleteuser',$data->id)}}">Delete</a></td>
                     @else
 
