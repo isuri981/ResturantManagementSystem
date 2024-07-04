@@ -52,6 +52,13 @@
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
                             <img src="assets/images/klassy-logo.png" align="klassy cafe">
+                        
+                            <a class="menu-trigger">
+
+                                <span>Menu</span>
+
+                            </a>
+                        
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -88,21 +95,21 @@
                              
                                 @auth
                             
-                                <a href="{{url('/showcart', Auth::user()->id)}}">
+                                <a href="{{ url('/showcart', Auth::user()->id) }}">
 
-                                     Cart{{$count}}
+                                    Cart{{$count}}
 
                                 </a>
 
-                            @endauth
+                                @endauth
 
-                            @guest
+                                @guest
 
-                            Cart[0]
+                                    Cart[0]
 
-                            @endguest
+                                @endguest
                         
-                        </a></li>
+                        </li>
                             
                             
                             <li>

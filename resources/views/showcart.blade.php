@@ -94,7 +94,7 @@
 
                                 <a href="{{url('/showcart', Auth::user()->id)}}">
 
-                                    Cart{{$count}}
+                                Cart{{$count}}
 
                                 </a>
 
@@ -106,7 +106,7 @@
 
                                 @endguest
 
-                                </a>
+                                
                             </li>
 
 
