@@ -13,9 +13,8 @@
     <title>Klassy Cafe </title>
     <!--
     
-TemplateMo 558 Klassy Cafe
 
-https://templatemo.com/tm-558-klassy-cafe
+
 
 -->
     <!-- Additional CSS Files -->
@@ -84,6 +83,28 @@ https://templatemo.com/tm-558-klassy-cafe
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
 
+                            
+                            <li class="scroll-to-section" style="background-color: red;">
+                             
+                                @auth
+                            
+                                <a href="{{url('/showcart', Auth::user()->id)}}">
+
+                                     Cart{{$count}}
+
+                                </a>
+
+                            @endauth
+
+                            @guest
+
+                            Cart[0]
+
+                            @endguest
+                        
+                        </a></li>
+                            
+                            
                             <li>
 
                                 @if (Route::has('login'))
@@ -500,7 +521,7 @@ https://templatemo.com/tm-558-klassy-cafe
                     <div class="left-text-content">
                         <p>klassy Cafe
 
-                            <br>Design By Isu
+                            <br>Design By Isu &#128147;
                         </p>
                     </div>
                 </div>
