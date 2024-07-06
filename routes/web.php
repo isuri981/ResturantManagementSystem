@@ -62,6 +62,12 @@ Route::get("/search",[AdminController::class,"search"]);
 
 
 
+Route::controller(HomeController::class)->group(function(){
+    Route::get('stripe/{value}', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
+
+
 Route::get("/redirects",[HomeController::class,"redirects"]);
 
 Route::get("/Addfoodmenu", function (){

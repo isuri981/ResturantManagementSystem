@@ -23,12 +23,13 @@
 
         @include("admin.navbar")
 
-        <div class="container">
+        <div class="container" style="right: -60px;">
 
+            <br>
             <h1>Customers Orders</h1>
 
 
-
+            <br>
             <form action="{{url('/search')}}" method="get">
 
                 @csrf
@@ -39,42 +40,45 @@
 
             </form>
 
-            <table>
+            <div style="position: relative; top: 60px; right: -60px ">
 
-                <tr align="center">
+                <table bgcolor="light blue" border="3px">
 
-                    <td style="padding: 30px;">Name</td>
-                    <td style="padding: 30px;">Phone</td>
-                    <td style="padding: 30px;">Address</td>
-                    <td style="padding: 30px;">Foodname</td>
-                    <td style="padding: 30px;">Price</td>
-                    <td style="padding: 30px;">Quantity</td>
-                    <td style="padding: 30px;">Total Price</td>
-                </tr>
+                    <tr align="center">
 
-                @foreach($data as $data)
+                        <td style="padding: 30px;">Name</td>
+                        <td style="padding: 30px;">Phone</td>
+                        <td style="padding: 30px;">Address</td>
+                        <td style="padding: 30px;">Foodname</td>
+                        <td style="padding: 30px;">Price</td>
+                        <td style="padding: 30px;">Quantity</td>
+                        <td style="padding: 30px;">Total Price</td>
+                    </tr>
 
-                <tr align="center" style="background-color: black;">
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->phone}}</td>
-                    <td>{{$data->address}}</td>
-                    <td>{{$data->foodname}}</td>
-                    <td>{{$data->price}}</td>
-                    <td>{{$data->quantity}}</td>
-                    <td>{{$data->price * $data->quantity}}$</td>
+                    @foreach($data as $data)
 
-                </tr>
+                    <tr align="center">
+                        <td>{{$data->name}}</td>
+                        <td>{{$data->phone}}</td>
+                        <td>{{$data->address}}</td>
+                        <td>{{$data->foodname}}</td>
+                        <td>{{$data->price}}</td>
+                        <td>{{$data->quantity}}</td>
+                        <td>{{$data->price * $data->quantity}}$</td>
 
-                @endforeach
+                    </tr>
+
+                    @endforeach
 
 
-            </table>
+                </table>
+            </div>
 
         </div>
 
     </div>
 
-            
+
     @include("admin.adminscript")
 
 

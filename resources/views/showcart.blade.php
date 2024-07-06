@@ -206,6 +206,11 @@
 
         </div>
 
+        <div class="cart_value">
+            <h3>Total Value of Cart : ${{$value }}</h3>
+
+        </div>
+
         <div id="appear" align="center" style="padding: 10px; display:none;">
 
             <div style="padding: 10px;">
@@ -231,9 +236,9 @@
 
             <div style="padding: 10px;">
 
-                <input class="btn btn-success" type="submit" value="Order Confirm">
+                <input class="btn btn-success" type="submit" value="Cash On Delivery">
 
-                <button id="close" type="button" class="btn btn-danger">Close</button>
+                <a class="btn btn-primary" href="{{url('stripe',$value)}}">Pay Using Card</a>
 
             </div>
 

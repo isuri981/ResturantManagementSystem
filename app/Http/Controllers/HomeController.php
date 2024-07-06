@@ -14,10 +14,11 @@ use App\Models\Cart;
 
 use App\Models\Order;
 
+use Illuminate\Support\Facades\Session;
 
+use Stripe\Stripe;
 
-
-
+use Stripe\Charge;
 
 
 
@@ -25,16 +26,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if(Auth::id())
-        {
+        if (Auth::id()) {
 
             return redirect('redirects');
+        } else
 
-        }
-
-        else
-
-        $data = food::all();
+            $data = food::all();
 
         $data2 = foodchef::all();
 
@@ -50,9 +47,8 @@ class HomeController extends Controller
         $usertype = Auth::user()->usertype;
 
         if ($usertype == '1') {
-            
+
             return view('admin.adminhome');
-        
         } else {
 
             $user_id = Auth::id();
@@ -93,22 +89,16 @@ class HomeController extends Controller
 
         $count = cart::where('user_id', $id)->count();
 
-        if(Auth::id()==$id)
-        { 
+        if (Auth::id() == $id) {
 
-        
 
-        $data2 = cart::select('*')->where('user_id', '=', $id)->get();
 
-        $data = cart::where('user_id', $id)->join('food', 'carts.food_id', '=', 'food.id')->get();
+            $data2 = cart::select('*')->where('user_id', '=', $id)->get();
 
-        return view('showcart', compact('count', 'data', 'data2'));
+            $data = cart::where('user_id', $id)->join('food', 'carts.food_id', '=', 'food.id')->get();
 
-        }
-        
-        else
-
-        {
+            return view('showcart', compact('count', 'data', 'data2'));
+        } else {
 
             return redirect()->back();
         }
@@ -147,6 +137,52 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function stripe($value)
+    {
+        return view('stripe', compact('value'));
+    }
+
+
+
+    public function stripePost(Request $request)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        Charge::create([
+            "amount" => 100 * 100,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from complete."
+        ]);
+
+        Session::flash('success', 'Payment successful!');
+
+        return redirect()->back();
+    }
 
     
+    public function showCart2()
+{
+    // Assuming you have a method to calculate the total value of the cart
+    $value = $this->calculateCartTotal();
+
+    // Pass the $value variable to the view
+    return view('cart', compact('value'));
+}
+
+// This is just an example method to calculate the total cart value
+private function calculateCartTotal()
+{
+    // Calculate the total value of the cart items
+    $total = 0;
+    // Assuming you have a Cart model or service to get the cart items
+    $cartItems = Cart::all();
+
+    foreach ($cartItems as $item) {
+        $total += $item->price * $item->quantity;
+    }
+
+    return $total;
+}
+
 }

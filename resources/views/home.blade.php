@@ -277,9 +277,9 @@
                                                         <div class="tab-item">
                                                             <img src="assets/images/tab-item-01.png" alt="">
                                                             <h4>Fresh Chicken Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                                                            <p>"Enjoying a fresh and healthy chicken salad! 🥗 #Yum #HealthyEating".</p>
                                                             <div class="price">
-                                                                <h6>$10.50</h6>
+                                                                <h6>$200</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -287,9 +287,9 @@
                                                         <div class="tab-item">
                                                             <img src="assets/images/tab-item-02.png" alt="">
                                                             <h4>Orange Juice</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                                                            <p>"Sipping on some refreshing orange juice! 🍊🥤 #Fresh #HealthyDrink"</p>
                                                             <div class="price">
-                                                                <h6>$8.50</h6>
+                                                                <h6>$160</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -297,9 +297,9 @@
                                                         <div class="tab-item">
                                                             <img src="assets/images/tab-item-03.png" alt="">
                                                             <h4>Fruit Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                                                            <p>"Indulging in a vibrant and delicious fruit salad! 🍓🍍🍇 #Fresh #HealthyEats"</p>
                                                             <div class="price">
-                                                                <h6>$9.90</h6>
+                                                                <h6>$90</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -313,7 +313,7 @@
                                                         <div class="tab-item">
                                                             <img src="assets/images/tab-item-04.png" alt="">
                                                             <h4>Eggs Omelette</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                                                            <p>"Starting the day with a perfectly fluffy eggs omelette! 🍳 #BreakfastGoals #Delicious"</p>
                                                             <div class="price">
                                                                 <h6>$6.50</h6>
                                                             </div>
@@ -323,7 +323,7 @@
                                                         <div class="tab-item">
                                                             <img src="assets/images/tab-item-05.png" alt="">
                                                             <h4>Dollma Pire</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                                                            <p>"Enjoying a hearty serving of Dollma Pire! 🍽️ #SavoryDelights #TraditionalFlavors"</p>
                                                             <div class="price">
                                                                 <h6>$5.00</h6>
                                                             </div>
@@ -333,7 +333,7 @@
                                                         <div class="tab-item">
                                                             <img src="assets/images/tab-item-06.png" alt="">
                                                             <h4>Omelette & Cheese</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                                                            <p>"Savoring a cheesy and delicious omelette! 🧀🍳 #BreakfastBliss #CheeseLovers"</p>
                                                             <div class="price">
                                                                 <h6>$4.10</h6>
                                                             </div>

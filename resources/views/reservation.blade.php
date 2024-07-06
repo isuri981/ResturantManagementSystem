@@ -8,7 +8,7 @@
                             <h6>Contact Us</h6>
                             <h2>Here You Can Make A Reservation Or Just walkin to our cafe</h2>
                         </div>
-                        <p>Donec pretium est orci, non vulputate arcu hendrerit a. Fusce a eleifend riqsie, namei sollicitudin urna diam, sed commodo purus porta ut.</p>
+                        <p>Booked a table for two at KlassyCafe! Can't wait for a delicious evening! 🍽️</p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="phone">

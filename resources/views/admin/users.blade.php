@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Users</title>
 </head>
 
 <body>
@@ -32,34 +32,50 @@
 
             @include("admin.navbar")
 
-        <div style="position: relative; top: 60px; right: -60px ">
+            <div class="container">
 
-            <table bgcolor = "grey" border="3px">
-                <tr>
-                    <th style="padding: 30px">Name</th>
-                    <th style="padding: 30px">Email</th>
-                    <th style="padding: 30px">Action</th>
-                </tr>
+                <br>
+                <h1>Users</h1>
 
-                @foreach($data as $data)
-                <tr align="center">
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->email}}</td>
+                <br>
+                <form action="{{url('/search')}}" method="get">
 
-                    @if($data->usertype=="0")
-                    
-                    <td><a href = "{{url('/deleteuser',$data->id)}}">Delete</a></td>
-                    @else
+                    @csrf
 
-                    <td><a>Not Allowed</a></td>
-                    @endif
+                    <input type="text" name="search" style="color: blue;">
 
-                </tr>
+                    <input type="submit" value="Search" class="btn btn-success">
 
-                @endforeach
-            </table>
+                </form>
 
-        </div>
+                <div style="position: relative; top: 60px; right: -60px ">
+
+                <table bgcolor="light blue" border="3px">
+                    <tr align="center">
+                        <th style="padding: 30px" text>Name</th>
+                        <th style="padding: 30px">Email</th>
+                        <th style="padding: 30px">Action</th>
+                    </tr>
+
+                    @foreach($data as $data)
+                    <tr align="center">
+                        <td>{{$data->name}}</td>
+                        <td>{{$data->email}}</td>
+
+                        @if($data->usertype=="0")
+
+                        <td><a href="{{url('/deleteuser',$data->id)}}">Delete</a></td>
+                        @else
+
+                        <td><a>Not Allowed</a></td>
+                        @endif
+
+                    </tr>
+
+                    @endforeach
+                </table>
+
+            </div>
 
 
         </div>
