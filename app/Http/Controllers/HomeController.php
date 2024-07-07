@@ -137,9 +137,9 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function stripe($value)
+    public function stripe()
     {
-        return view('stripe', compact('value'));
+        return view('stripe');
     }
 
 
@@ -161,28 +161,5 @@ class HomeController extends Controller
     }
 
     
-    public function showCart2()
-{
-    // Assuming you have a method to calculate the total value of the cart
-    $value = $this->calculateCartTotal();
-
-    // Pass the $value variable to the view
-    return view('cart', compact('value'));
-}
-
-// This is just an example method to calculate the total cart value
-private function calculateCartTotal()
-{
-    // Calculate the total value of the cart items
-    $total = 0;
-    // Assuming you have a Cart model or service to get the cart items
-    $cartItems = Cart::all();
-
-    foreach ($cartItems as $item) {
-        $total += $item->price * $item->quantity;
-    }
-
-    return $total;
-}
 
 }

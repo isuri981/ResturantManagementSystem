@@ -14,11 +14,11 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default credit-card-box">
-                <div class="panel-heading display-table" >
+                <!-- <div class="panel-heading display-table" >
                         <h3 class="panel-title" >Payment Details</h3>
 
                         <h4>You need to pay {{$value}}</h4>
-                </div>
+                </div> -->
                 <div class="panel-body">
     
                     @if (Session::has('success'))
