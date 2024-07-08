@@ -22,59 +22,118 @@
     <div class="container-scroller">
 
         @include("admin.navbar")
+        <style>
+            .container {
+                max-width: 1200px;
+                margin: 50px auto;
+                padding: 50px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
 
-        <div class="container" style="right: -60px;">
+            h1 {
+                font-size: 30px;
+                color: #333;
+                text-align: left;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
 
-            <br>
-            <h1>Customers Orders</h1>
+            form {
+                text-align: center;
+                margin-bottom: 50px;
+            }
 
+            input[type="text"] {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 200px;
+                color: blue;
+            }
 
-            <br>
-            <form action="{{url('/search')}}" method="get">
+            input[type="submit"] {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
 
-                @csrf
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background-color: white;
 
-                <input type="text" name="search" style="color: blue;">
+            }
 
-                <input type="submit" value="Search" class="btn btn-success">
+            table th,
+            table td {
+                padding: 15px;
+                text-align: center;
+            }
 
-            </form>
+            table th {
+                background-color: greenyellow;
+                color: black;
+            }
 
-            <div style="position: relative; top: 60px; right: -60px ">
+            table td {
+                background-color: #fff;
+                color: #333;
+            }
 
-                <table bgcolor="light blue" border="3px">
+            table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
 
-                    <tr align="center">
+            table tr:hover {
+                background-color: #f2f2f2;
+                color: #333;
+            }
+        </style>
+        </head>
 
-                        <td style="padding: 30px;">Name</td>
-                        <td style="padding: 30px;">Phone</td>
-                        <td style="padding: 30px;">Address</td>
-                        <td style="padding: 30px;">Foodname</td>
-                        <td style="padding: 30px;">Price</td>
-                        <td style="padding: 30px;">Quantity</td>
-                        <td style="padding: 30px;">Total Price</td>
-                    </tr>
+        <body>
+            <div class="container">
+                <h1>Customers Orders</h1>
+                <br>
 
-                    @foreach($data as $data)
+                <form action="{{url('/search')}}" method="get">
+                    @csrf
+                    <input type="text" name="search" placeholder="Search by Name" style="width: 400px; right:-60px; color:blue;">
+                    <input type="submit" value="Search" class="btn btn-success">
+                </form>
 
-                    <tr align="center">
-                        <td>{{$data->name}}</td>
-                        <td>{{$data->phone}}</td>
-                        <td>{{$data->address}}</td>
-                        <td>{{$data->foodname}}</td>
-                        <td>{{$data->price}}</td>
-                        <td>{{$data->quantity}}</td>
-                        <td>{{$data->price * $data->quantity}}$</td>
-
-                    </tr>
-
-                    @endforeach
-
-
-                </table>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Food Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                        @foreach($data as $order)
+                        <tr>
+                            <td>{{$order->name}}</td>
+                            <td>{{$order->phone}}</td>
+                            <td>{{$order->address}}</td>
+                            <td>{{$order->foodname}}</td>
+                            <td>{{$order->price}}</td>
+                            <td>{{$order->quantity}}</td>
+                            <td>{{$order->price * $order->quantity}}$</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
-
-        </div>
 
     </div>
 

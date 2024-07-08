@@ -7,10 +7,12 @@
 <html lang="en">
 
 <head>
-  
+
     <base href="/public">
 
-  @include("admin.admincss")
+    @include("admin.admincss")
+
+
 
 
 
@@ -19,55 +21,58 @@
 <body>
 
 
-  <div class="container-scroller">
+    <div class="container-scroller">
 
-    @include("admin.navbar")
+        @include("admin.navbar")
 
-    <div style="position: relative; top:60px; right: -150px ">
+        <div style="position: relative; top: 30px; right: -150px; width: 400px; background-color: #f0f0f0; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
 
-        <form action="{{url('/update',$data->id)}}" method="post" enctype="multipart/form-data">
+            <div class="form-container">
+                <h1 style="font-style: bold;">Update Food Menu</h1>
 
-         @csrf
-            <div >
-                <label>Title</label>
-                <input style="color:blue;" type="text" name="title" value="{{$data->title}}" required>
+                <form action="{{ url('/update', $data->id) }}" method="post" enctype="multipart/form-data">
+
+                    @csrf
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">Title:</label><br>
+                        <input style="color: blue; padding: 5px; width: 100%;" type="text" name="title" value="{{ $data->title }}" required>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; text-align:left; color: #333;">Price:</label><br>
+                        <input style="color: blue; padding: 5px; width: 100%;" type="number" name="price" value="{{ $data->price }}" required>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">Description:</label><br>
+                        <textarea style="color: blue; padding: 5px; width: 100%;" name="description" required>{{ $data->description }}</textarea>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">Old Image:</label><br>
+                        <img style="max-width: 200px; max-height: 200px; margin-top: 10px;" src="/foodimage/{{ $data->image }}">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">New Image:</label><br>
+                        <input type="file" name="image" required>
+                    </div>
+
+                    <div>
+                        <input style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" value="Save">
+                    </div>
+
+                </form>
+
             </div>
-            
-            <div>
-                <label>Price</label>
-                <input style="color:blue;" type="number" name="price" value="{{$data->price}}" required>
-            </div>
 
-            <div>
-                <label>Description</label>
-                <input style="color:blue;" type="text" name="description" value="{{$data->description}}"required>
-            </div>
-
-            <div>
-                <label>Old Image</label>
-                <img height="200" width="200"  src="/foodimage/{{$data->image}}">
-            </div>
-
-            <div>
-                <label>New Image</label>
-                <input type="file" name="image" required>
-            </div>
-            
-
-            <div>
-                <input style= "color:blueviolet;" type="submit" value="Save">
-
-            </div>
-        
-        </form>
-
-        
 
         </div>
 
-  </div>
+    </div>
 
-  @include("admin.adminscript")
+    @include("admin.adminscript")
 
 
 

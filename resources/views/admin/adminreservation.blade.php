@@ -23,23 +23,29 @@
 
     @include("admin.navbar")
 
-    <div style="position: relative; top: 70px; right: -150;">
+    <div class="container">
 
-    <table bgcolor="gray" border="1px">
+      <h1>Reservation</h1>
 
-        <tr>
-            <th style="padding: 30px;">Name</th>
-            <th style="padding: 30px;">Email</th>
-            <th style="padding: 30px;">Phone</th>
-            <th style="padding: 30px;">Date</th>
-            <th style="padding: 30px;">Time</th>
-            <th style="padding: 30px;">Message</th>
-            
-        </tr>
+      <div style="position: relative; top: 70px; right: -150;">
 
-        @foreach($data as $data)
 
-        <tr align="center">
+
+        <table bgcolor="gray" border="1px">
+
+          <tr>
+            <th >Name</th>
+            <th >Email</th>
+            <th >Phone</th>
+            <th >Date</th>
+            <th >Time</th>
+            <th >Message</th>
+
+          </tr>
+
+          @foreach($data as $data)
+
+          <tr align="center">
             <td>{{$data->name}}</td>
             <td>{{$data->email}}</td>
             <td>{{$data->phone}}</td>
@@ -48,15 +54,15 @@
             <td>{{$data->message}}</td>
             <td></td>
 
-        </tr>
+          </tr>
 
-        @endforeach
-    </table>
+          @endforeach
+        </table>
+      </div>
+
     </div>
 
-  </div>
-
-  @include("admin.adminscript")
+    @include("admin.adminscript")
 
 
 

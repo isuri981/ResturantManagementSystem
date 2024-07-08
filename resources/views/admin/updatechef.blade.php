@@ -11,7 +11,9 @@
     <base href="/public">
 
 
-  @include("admin.admincss")
+    @include("admin.admincss")
+
+
 
 
 
@@ -20,44 +22,48 @@
 <body>
 
 
-  <div class="container-scroller">
+    <div class="container-scroller">
 
-    @include("admin.navbar")
+        @include("admin.navbar")
 
-    <form action="{{url('/updatefoodchef', $data->id)}}" method="Post" enctype="multipart/form-data">
+        <div style="position: relative; top: 60px; right: -150px; width: 400px; background-color: #f0f0f0; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
 
-        @csrf
+            <div class="form-container">
+                <h1 style="text-align: center; color: #333;">Update FoodChef</h1>
 
-        <div>
-            <label>Chef Name</label>
-            <input style="color:blue;" type="text" name="name" value="{{$data->name}}">
+                <form action="{{ url('/updatefoodchef', $data->id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">Chef Name:</label><br>
+                        <input style="color: blue; padding: 5px; width: 100%;" type="text" name="name" value="{{ $data->name }}">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">Speciality:</label><br>
+                        <input style="color: blue; padding: 5px; width: 100%;" type="text" name="speciality" value="{{ $data->speciality }}">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">Old Image:</label><br>
+                        <img style="max-width: 200px; max-height: 200px; margin-top: 10px;" src="/chefimage/{{ $data->image }}">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; color: #333;">New Image:</label><br>
+                        <input type="file" name="image">
+                    </div>
+
+                    <div>
+                        <input style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" value="Update Chef">
+                    </div>
+
+                </form>
+            </div>
         </div>
 
-        <div>
-            <label>Speciality</label>
-            <input style="color:blue;" type="text" name="speciality<" value="{{$data->speciality}}">
-        </div>
-
-        <div>
-            <label>Old Image</label>
-            <img height="200" width="200" src="/chefimage/{{$data->iamge}}">
-        </div>
-
-        <div>
-            <label>New Image</label>
-            <input type="file" name="image">
-        </div>
-
-        <div>
-            
-            <input style="color:blue;" type="submit" value="Update chef" required="">
-        </div>
-
-    </form>
-
-  </div>
-
-  @include("admin.adminscript")
+    </div>
+    @include("admin.adminscript")
 
 
 

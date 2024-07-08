@@ -19,51 +19,69 @@
     <div class="container-scroller">
         @include("admin.navbar")
 
+        <div class="container">
 
-        <div style="position: relative; top:60px; right: -150px ">
+            <h1>FoodMenu</h1>
 
-        <a href="{{ route('AddFood')}}">Add</a>
 
-        <div>
 
-            <table bgcolor="black">
-                <tr>
-                    <th style="padding: 30px">Food Name</th>
-                    <th style="padding: 30px">Price</th>
-                    <th style="padding: 30px">Description</th>
-                    <th style="padding: 30px">Image</th>
-                    <th style="padding: 30px">Action</th>
-                    <th style="padding: 30px">Action2</th>
 
-                    
+            <a class="btn btn-primary btn btn-sm" href="{{ route('AddFood')}}">+Add foods</a>
 
-                </tr>
+            <div style="position: relative; top: 60px; right: -100px ">
 
-                @foreach($data as $data)
+                <table>
+                    <tr align="center">
+                        <th>Food Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                        <th>Action2</th>
 
-                <tr align="center">
-                    <td>{{$data->title}}</td>
-                    <td>{{$data->price}}</td>
-                    <td>{{$data->description}}</td>
-                    <td><img height="100px" width="100" src="/foodimage/{{$data->image}}"></td>
-                    
-                    <td><a href="{{url('/deletemenu',$data->id)}}">Delete</a></td>
-                    
-                    <td><a href="{{url('/updateview',$data->id)}}">Update</a></td>
-                
-                </tr>
 
-                @endforeach
 
-            </table>
+                    </tr>
+
+                    @foreach($data as $data)
+
+                    <tr align="center">
+                        <td>{{$data->title}}</td>
+                        <td>{{$data->price}}</td>
+                        <td>{{$data->description}}</td>
+                        <td><img height="100px" width="100" src="/foodimage/{{$data->image}}"></td>
+
+                        <td><a class="btn btn-success" href="{{url('/updateview',$data->id)}}">Edit</a></td>
+
+                        <td>
+                            <button class="btn btn-danger" onclick="event.preventDefault();
+        if (confirm('Are you sure you want to delete this item?')) {
+            document.getElementById('delete-form-{{ $data->id }}').submit();
+        }">
+                                Delete
+                            </button>
+                            <form id="delete-form-{{ $data->id }}" action="{{ url('/deletemenu', $data->id) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
+
+
+
+                    </tr>
+
+                    @endforeach
+
+                </table>
+
+            </div>
+
+
+
 
         </div>
 
-        </div>
-
-    </div>
-
-    @include("admin.adminscript")
+        @include("admin.adminscript")
 
 
 

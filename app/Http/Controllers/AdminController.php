@@ -24,7 +24,20 @@ class AdminController extends Controller
     public function user()
     {
         $data = user::all();
-        return view("admin.users", compact("data"));
+        return view("admin.users", compact('data'));
+    }
+
+    public function adduser(Request $request)
+    {
+        $data = new User();
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->usertype = $request->usertype; // Changed to 'usertype'
+
+        $data->save();
+
+        return redirect()->back();
     }
 
     public function deleteuser($id)

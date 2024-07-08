@@ -1,60 +1,62 @@
+<x-app-layout>
+
+</x-app-layout>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <!-- Required meta tags -->
+
+
+    @include("admin.admincss")
+
+
+
 </head>
 
 <body>
 
+    <div class="container-scroller">
 
-    <x-app-layout>
+        @include("admin.navbar")
 
-    </x-app-layout>
+        <div class="container">
 
+            
+            <h1>Users</h1>
 
-    <!DOCTYPE html>
-    <html lang="en">
+            
+            <form action="{{url('/search')}}" method="get">
 
-    <head>
-        <!-- Required meta tags -->
+                @csrf
 
-
-        @include("admin.admincss")
-
-    </head>
-
-    <body>
-
-        <div class="container-scroller">
-
-            @include("admin.navbar")
-
-            <div class="container">
-
-                <br>
-                <h1>Users</h1>
-
-                <br>
-                <form action="{{url('/search')}}" method="get">
-
-                    @csrf
-
-                    <input type="text" name="search" style="color: blue;">
+                <div>
+                    <input type="text" name="search" placeholder="Search by User" style="width: 400px; right:-60px; color:blue;">
 
                     <input type="submit" value="Search" class="btn btn-success">
+                </div>
 
-                </form>
+            </form>
 
-                <div style="position: relative; top: 60px; right: -60px ">
 
-                <table bgcolor="light blue" border="3px">
+            <a href="{{ route('adduser') }}" class="btn btn-primary btn btn-sm" style="width: 150px;">+Add users</a>
+
+
+            <div style="position: relative; top: 60px; right: -100px ">
+
+
+
+                <table>
+
                     <tr align="center">
-                        <th style="padding: 30px" text>Name</th>
-                        <th style="padding: 30px">Email</th>
-                        <th style="padding: 30px">Action</th>
+
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                        <th>Action 2</th>
+
                     </tr>
 
                     @foreach($data as $data)
@@ -62,9 +64,11 @@
                         <td>{{$data->name}}</td>
                         <td>{{$data->email}}</td>
 
+                        <td><a class="btn btn-success" href="{{url('/editteuser',$data->id)}}">Edit</a></td>
+
                         @if($data->usertype=="0")
 
-                        <td><a href="{{url('/deleteuser',$data->id)}}">Delete</a></td>
+                        <td><a class="btn btn-danger" href="{{url('/deleteuser',$data->id)}}">Delete</a></td>
                         @else
 
                         <td><a>Not Allowed</a></td>
@@ -80,6 +84,7 @@
 
         </div>
         @include("admin.adminscript")
+    </div>
 
 
 
@@ -88,10 +93,7 @@
 
 
 
-
-    </body>
-
-    </html>
 </body>
+
 
 </html>

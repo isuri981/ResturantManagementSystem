@@ -147,58 +147,43 @@
 
     <div id="top">
 
-        <table align="center" bgcolor="yellow">
-            <tr>
-                <th style="padding: 30px;">Food Name</th>
-                <th style="padding: 30px;">Price</th>
-                <th style="padding: 30px;">Quantity</th>
-                <th style="padding: 30px;">Action</th>
-            </tr>
+    <table align="center" bgcolor="" style="margin-top: 100px; width: 50%;">
+        <tr>
+            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Food Name</th>
+            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Price</th>
+            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Quantity</th>
+            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Action</th>
+        </tr>
 
-            <form action="{{url('orderconfirm')}}" method="post">
+        <br><form action="{{ url('orderconfirm') }}" method="post">
 
-            @csrf
+        @csrf
 
-                @foreach($data as $data)
+        @foreach($data as $item)
 
-                <tr align="center">
+        <tr align="center">
+            <td style="border: 1px solid #000;">
+                <input type="text" name="foodname[]" value="{{ $item->title }}" hidden>
+                {{ $item->title }}
+            </td>
+            <td style="border: 1px solid #000;">
+                <input type="text" name="price[]" value="{{ $item->price }}" hidden>
+                {{ $item->price }}
+            </td>
+            <td style="border: 1px solid #000;">
+                <input type="text" name="quantity[]" value="{{ $item->quantity_id }}" hidden>
+                {{ $item->quantity_id }}
+            </td>
+            <td style="border: 1px solid #000;">
+                <a href="{{ url('/remove', $item->id) }}" class="btn btn-danger btn btn-sm">Delete</a>
+            </td>
+        </tr>
 
-                    <td>
-                        <input type="text" name="foodname[]" value="{{$data->title}}" hidden>
-                        {{$data->title}}
-                    </td>
+        @endforeach
 
-                    <td>
-                        <input type="text" name="price[]" value="{{$data->price}}" hidden>
+    </table>
 
-                        {{$data->price}}
-                    </td>
-
-                    <td>
-                        <input type="text" name="quantity[]" value="{{$data->quantity_id}}" hidden>
-
-                        {{$data->quantity_id}}
-                    </td>
-
-                    <td><a href="$data->id" class="btn btn-warning">Remove</a></td>
-
-
-                </tr>
-
-                @endforeach
-
-                @foreach($data2 as $data2)
-
-                <tr style="position: relative; top: -50px; Left:360px;">
-                    <td>
-                        <a class="btn btn-warning" href="{{url('/remove', $data2->id)}}">Remove</a>
-                    </td>
-
-                </tr>
-
-
-                @endforeach
-        </table>
+</div>
 
         <div align="center" style="padding: 10px;">
 
@@ -206,10 +191,7 @@
 
         </div>
 
-        <div class="cart_value">
-            <h3>Total Value of Cart : ${{$value }}</h3>
-
-        </div>
+       
 
         <div id="appear" align="center" style="padding: 10px; display:none;">
 
@@ -238,7 +220,7 @@
 
                 <input class="btn btn-success" type="submit" value="Cash On Delivery">
 
-                <a class="btn btn-primary" href="{{url('stripe',$value)}}">Pay Using Card</a>
+                <a class="btn btn-primary" href="{{url('stripe')}}">Pay Using Card</a>
 
             </div>
 
