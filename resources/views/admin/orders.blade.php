@@ -119,6 +119,12 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Change Status</th>
+                            <th>print PDF</th>
+
+
+
                         </tr>
                         @foreach($data as $order)
                         <tr>
@@ -129,6 +135,43 @@
                             <td>{{$order->price}}</td>
                             <td>{{$order->quantity}}</td>
                             <td>{{$order->price * $order->quantity}}$</td>
+                            <td>
+
+                                @if($order->payment_status== 'in progress')
+
+                                <span style="color: red">{{$order->payment_status}}</span>
+                                
+                                @elseif($order->payment_status== 'On the way')
+
+                                <span style="color:yellow;" >{{$order->payment_status}}</span>
+                                
+                                @else
+
+                                <span style="color:skyblue;" >{{$order->payment_status}}</span>
+
+                                
+                                @endif
+
+                            </td>
+                            
+                            <td>
+
+                            <a class="btn btn-primary btn btn-sm" href="{{ url('on_the_way', $order->id) }}">On the way</a>
+
+                            <br>
+
+                                <a class="btn btn-success btn btn-sm"  href="{{ url('deliverd', $order->id ) }}">Deliverd</a>
+
+
+
+
+                            </td>
+
+                            <td>
+
+                            <a class="btn btn-secondary" href="{{url('print_pdf',$order->id)}}" >Print PDF</a>
+
+                            </td>
                         </tr>
                         @endforeach
                     </table>
@@ -138,7 +181,7 @@
     </div>
 
 
-    @include("admin.adminscript")
+    @include("admin.adminscript");
 
 
 

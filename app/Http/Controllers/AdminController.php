@@ -16,6 +16,8 @@ use App\Models\Order;
 
 use Illuminate\Support\Facades\Auth;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 
@@ -128,7 +130,7 @@ class AdminController extends Controller
 
         // $data->image = $imagename;
 
-        $data->name= $request->name;
+        $data->name = $request->name;
 
         $data->email = $request->email;
 
@@ -150,26 +152,22 @@ class AdminController extends Controller
 
     public function viewreservation()
     {
-        
-        if(Auth::id())
-        {
 
-        $data=reservation::all();
+        if (Auth::id()) {
 
-        return view("admin.adminreservation",compact("data"));
+            $data = reservation::all();
 
-        }
-        else
-        {
+            return view("admin.adminreservation", compact("data"));
+        } else {
             return redirect('login');
         }
     }
 
 
-    public function viewchef() 
+    public function viewchef()
     {
-        $data=foodchef::all();
-        
+        $data = foodchef::all();
+
         return view("admin.adminchef", compact("data"));
     }
 
@@ -178,7 +176,7 @@ class AdminController extends Controller
 
         $data = new foodchef;
 
-        $image=$request->image;
+        $image = $request->image;
 
 
 
@@ -188,87 +186,122 @@ class AdminController extends Controller
 
         $data->image = $imagename;
 
-        $data->name=$request->name;
+        $data->name = $request->name;
 
-        $data->speciality=$request->speciality;
+        $data->speciality = $request->speciality;
 
         $data->save();
 
         return redirect()->back();
-
-
     }
 
     public function updatechef($id)
     {
-        $data=foodchef::find($id);
+        $data = foodchef::find($id);
 
         return view("admin.updatechef", compact("data"));
     }
 
-    public function updatefoodchef(Request $request ,$id)
+    public function updatefoodchef(Request $request, $id)
     {
-        $data=foodchef::find($id);
+        $data = foodchef::find($id);
 
         $image = $request->image;
 
-        if($image) 
-        
-        {
+        if ($image) {
 
             $imagename = time() . '.' . $image->getClientOriginalExtension();
 
             $request->image->move('chefimage', $imagename);
-    
+
             $data->image = $imagename;
-    
         }
 
-       
-        $data->name=$request->name;
 
-        $data->speciality=$request->speciality;
+        $data->name = $request->name;
+
+        $data->speciality = $request->speciality;
 
         $data->save();
 
         return redirect()->back();
-
-
-
-
-
-     
     }
 
     public function deletechef($id)
     {
-        $data=foodchef::find($id);
+        $data = foodchef::find($id);
 
         $data->delete();
 
         return redirect()->back();
     }
 
-    public function orders()
-    {
-        $data=order::all();
-        
-        return view('admin.orders', compact('data'));
-    }
+    // public function orders()
+    // {
+    //     $data=order::all();
+
+    //     return view('admin.orders', compact('data'));
+    // }
 
     public function search(Request $request)
     {
-        $search=$request->search;
-        
-        $data=order::where('name', 'Like', '%'.$search.'%')->orwhere('foodname', 'Like', '%'.$search.'%')
-        ->get();
-        
+        $search = $request->search;
+
+        $data = order::where('name', 'Like', '%' . $search . '%')->orwhere('foodname', 'Like', '%' . $search . '%')
+            ->get();
+
+        return view('admin.orders', compact('data'));
+    }
+
+    // public function on_the_way($id)
+    // {
+    //     $data = Order::find($id);
+
+    //     $data->status = 'On the way';
+
+    //     $data->save();
+
+    //     return redirect('/orders');
+    // }
+
+    public function orders()
+    {
+        $data = Order::all();
         return view('admin.orders', compact('data'));
     }
 
 
+    public function on_the_way($id)
+    {
+        $data = Order::find($id);
 
+        if (!$data) {
+            return redirect('/orders');
+        }
 
+        $data->status = 'On the way';
+        $data->save();
 
-   
+        return redirect('/orders');
+    }
+
+      public function delivered($id)
+    {
+        $data = Order::find($id);
+
+        $data->status = 'Delivered';
+
+        $data->save();
+
+        return redirect('/orders');
+    }
+
+    public function print_pdf($id)
+    {
+        $data = Order::find($id);
+
+        $pdf = Pdf::loadView('admin.invoice', compact('data'));
+    
+        return $pdf->download('invoice.pdf');
+    }
 }

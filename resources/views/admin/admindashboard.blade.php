@@ -62,7 +62,7 @@
 
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
-                            <a href="https://www.bootstrapdash.com/product/corona-free/"><i class="mdi mdi-home me-3 text-white"></i></a>
+                            <a ><i class="mdi mdi-home me-3 text-white"></i>Klassy Cafe</a>
                             <button id="bannerClose" class="btn border-0 p-0">
                                 <i class="mdi mdi-close text-white me-0"></i>
                             </button>
