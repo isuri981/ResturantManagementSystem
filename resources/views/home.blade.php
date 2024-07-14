@@ -91,13 +91,21 @@
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
 
                             
+                            <li class="scroll-to-section"><a href="{{ url('/myorders') }}">
+                                My Orders</a></li>
+                                
+
                             <li class="scroll-to-section" style="background-color: red;">
                              
                                 @auth
-                            
-                                <a href="{{ url('/showcart', Auth::user()->id) }}">
 
+                                
+
+                                <a href="{{ url('/showcart', Auth::user()->id) }}">
+                                    
                                     Cart{{$count}}
+
+
 
                                 </a>
 

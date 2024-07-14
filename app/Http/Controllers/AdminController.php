@@ -279,7 +279,7 @@ class AdminController extends Controller
             return redirect('/orders');
         }
 
-        $data->status = 'On the way';
+        $data->payment_status = 'On the way';
         $data->save();
 
         return redirect('/orders');
@@ -287,9 +287,14 @@ class AdminController extends Controller
 
       public function delivered($id)
     {
+        
         $data = Order::find($id);
 
-        $data->status = 'Delivered';
+        if (!$data) {
+            return redirect('/orders');
+        }
+
+        $data->payment_status = 'Delivered';
 
         $data->save();
 
@@ -303,5 +308,9 @@ class AdminController extends Controller
         $pdf = Pdf::loadView('admin.invoice', compact('data'));
     
         return $pdf->download('invoice.pdf');
+
+        
     }
+
+   
 }

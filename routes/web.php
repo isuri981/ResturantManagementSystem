@@ -53,14 +53,19 @@ Route::post("/orderconfirm",[HomeController::class,"orderconfirm"]);
 
 Route::get("/orders",[AdminController::class,"orders"]);
 
-Route::get("/on_the_way/{id}",[AdminController::class,"on_the_way"])->middleware(['auth', 'admin']);
+Route::get("/on_the_way/{id}",[AdminController::class,"on_the_way"])->name('on_the_way');
 
-Route::get("/delivered/{id}",[AdminController::class,"delivered"])->middleware(['auth', 'admin']);
+Route::get("/delivered/{id}",[AdminController::class,"delivered"])->name('delivered');
 
-Route::get("/print_pdf/{id}",[AdminController::class,"print_pdf"])->middleware(['auth', 'admin']);
+// Route::get("/print_pdf/{id}",[AdminController::class,"print_pdf"])->middleware(['auth', 'admin']);
+
+// routes/web.php
+Route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf'])->name('print_pdf');
 
 
 Route::get("/search",[AdminController::class,"search"]);
+
+Route::get('/myorders', [HomeController::class,'myorders']);
 
 
 

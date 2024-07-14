@@ -156,11 +156,11 @@
                             
                             <td>
 
-                            <a class="btn btn-primary btn btn-sm" href="{{ url('on_the_way', $order->id) }}">On the way</a>
+                            <a class="btn btn-primary btn btn-sm" href="{{ url('/on_the_way/' . $order->id) }}">On the way</a>
 
                             <br>
 
-                                <a class="btn btn-success btn btn-sm"  href="{{ url('deliverd', $order->id ) }}">Deliverd</a>
+                                <a class="btn btn-success btn btn-sm"  href="{{ url('/delivered/'. $order->id ) }}">Deliverd</a>
 
 
 
@@ -169,7 +169,7 @@
 
                             <td>
 
-                            <a class="btn btn-secondary" href="{{url('print_pdf',$order->id)}}" >Print PDF</a>
+                            <a class="btn btn-secondary" href="{{ url('/print_pdf/'.$order->id) }}" >Print PDF</a>
 
                             </td>
                         </tr>

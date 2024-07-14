@@ -160,6 +160,11 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function myorders()
+    {
+        return view('order');
+    }
+
     
 
 }

@@ -9,6 +9,7 @@
 
 <body>
     <cenetr>
+        
 
         <h3>Customer name : {{$data->name}}</h3>
         <h3>Customer address : {{$data->address}}</h3>
@@ -16,6 +17,7 @@
         <h2>FoodName : {{$data->foodname}}</h2>
         <h2>Price : {{$data->price}}</h2>
 
+        
     </cenetr>
 
 
