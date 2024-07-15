@@ -94,7 +94,7 @@
 
                                 <a href="{{url('/showcart', Auth::user()->id)}}">
 
-                                Cart{{$count}}
+                                    Cart{{$count}}
 
                                 </a>
 
@@ -106,7 +106,7 @@
 
                                 @endguest
 
-                                
+
                             </li>
 
 
@@ -147,86 +147,87 @@
 
     <div id="top">
 
-    <table align="center" bgcolor="" style="margin-top: 100px; width: 50%;">
-        <tr>
-            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Food Name</th>
-            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Price</th>
-            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Quantity</th>
-            <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Action</th>
-        </tr>
+        <table align="center" bgcolor="" style="margin-top: 100px; width: 50%;">
+            <tr>
+                <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Food Name</th>
+                <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Price</th>
+                <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Quantity</th>
+                <th style="padding: 15px; background-color: greenyellow; border: 1px solid #000;">Action</th>
+            </tr>
 
-        <br><form action="{{ url('orderconfirm') }}" method="post">
+            <br>
+            <form action="{{ url('orderconfirm') }}" method="post">
 
-        @csrf
+                @csrf
 
-        @foreach($data as $item)
+                @foreach($data as $item)
 
-        <tr align="center">
-            <td style="border: 1px solid #000;">
-                <input type="text" name="foodname[]" value="{{ $item->title }}" hidden>
-                {{ $item->title }}
-            </td>
-            <td style="border: 1px solid #000;">
-                <input type="text" name="price[]" value="{{ $item->price }}" hidden>
-                {{ $item->price }}
-            </td>
-            <td style="border: 1px solid #000;">
-                <input type="text" name="quantity[]" value="{{ $item->quantity_id }}" hidden>
-                {{ $item->quantity_id }}
-            </td>
-            <td style="border: 1px solid #000;">
-                <a href="{{ url('/remove', $item->id) }}" class="btn btn-danger btn btn-sm">Delete</a>
-            </td>
-        </tr>
+                <tr align="center">
+                    <td style="border: 1px solid #000;">
+                        <input type="text" name="foodname[]" value="{{ $item->title }}" hidden>
+                        {{ $item->title }}
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <input type="text" name="price[]" value="{{ $item->price }}" hidden>
+                        {{ $item->price }}
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <input type="text" name="quantity[]" value="{{ $item->quantity_id }}" hidden>
+                        {{ $item->quantity_id }}
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <a href="{{ url('/remove', $item->id) }}" class="btn btn-danger btn btn-sm">Delete</a>
+                    </td>
+                </tr>
 
-        @endforeach
+                @endforeach
 
-    </table>
+        </table>
 
-</div>
+    </div>
 
-        <div align="center" style="padding: 10px;">
+    <div align="center" style="padding: 10px;">
 
-            <button class="btn btn-primary" type="button" id="order">Order Now</button>
+        <button class="btn btn-primary" type="button" id="order">Order Now</button>
 
-        </div>
+    </div>
 
-       
 
-        <div id="appear" align="center" style="padding: 10px; display:none;">
 
-            <div style="padding: 10px;">
+    <div id="appear" align="center" style="padding: 10px; display:none;">
 
-                <label>Name</label>
-                <input type="text" name="name" placeholder="Name">
+        <div style="padding: 10px;">
 
-            </div>
-
-            <div style="padding: 10px;">
-
-                <label>Phone</label>
-                <input type="number" name="phone" placeholder="Phone Number">
-
-            </div>
-
-            <div style="padding: 10px;">
-
-                <label>Address</label>
-                <input type="text" name="address" placeholder="Address">
-
-            </div>
-
-            <div style="padding: 10px;">
-
-                <input class="btn btn-success" type="submit" value="Cash On Delivery">
-
-                <a class="btn btn-primary" href="{{url('stripe')}}">Pay Using Card</a>
-
-            </div>
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Name">
 
         </div>
 
-        </form>
+        <div style="padding: 10px;">
+
+            <label>Phone</label>
+            <input type="number" name="phone" placeholder="Phone Number">
+
+        </div>
+
+        <div style="padding: 10px;">
+
+            <label>Address</label>
+            <input type="text" name="address" placeholder="Address">
+
+        </div>
+
+        <div style="padding: 10px;">
+
+            <input class="btn btn-success" type="submit" value="Cash On Delivery">
+
+            <a class="btn btn-primary" href="{{url('stripe')}}">Pay Using Card</a>
+
+        </div>
+
+    </div>
+
+    </form>
 
 
 
