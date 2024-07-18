@@ -285,9 +285,9 @@ class AdminController extends Controller
         return redirect('/orders');
     }
 
-      public function delivered($id)
+    public function delivered($id)
     {
-        
+
         $data = Order::find($id);
 
         if (!$data) {
@@ -301,18 +301,13 @@ class AdminController extends Controller
         return redirect('/orders');
     }
 
+
     public function print_pdf($id)
     {
         $data = Order::find($id);
 
         $pdf = Pdf::loadView('admin.invoice', compact('data'));
-    
+
         return $pdf->download('invoice.pdf');
-
-        
     }
-
-   
-
-   
 }

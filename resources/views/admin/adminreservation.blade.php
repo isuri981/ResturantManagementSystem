@@ -23,11 +23,11 @@
 
     @include("admin.navbar")
 
-    <div class="container">
+    <div class="container mt-2">
 
       <h1>Reservation</h1>
 
-      <div style="position: relative; top: 70px; right: -150;">
+      <div style="position: relative; top: 30px; right: -100px ">
 
 
 

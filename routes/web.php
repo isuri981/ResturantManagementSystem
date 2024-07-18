@@ -80,6 +80,8 @@ Route::get('/myorders', [HomeController::class,'myorders']);
 
 
 
+
+
 Route::controller(HomeController::class)->group(function(){
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');

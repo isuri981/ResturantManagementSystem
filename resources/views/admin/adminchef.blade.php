@@ -23,13 +23,13 @@
 
     @include("admin.navbar")
 
-    <div class="container">
+    <div class="container mt-2">
 
       <h1>Food Chefs</h1>
 
       <a class="btn btn-primary btn btn-sm" href="{{ route('AddChef')}}">+Add Chef</a>
 
-      <div style="position: relative; top: 60px; right: -100px ">
+      <div style="position: relative; top: 30px; right: -100px ">
 
         <table>
 

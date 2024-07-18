@@ -66,7 +66,7 @@
             table {
                 width: 100%;
                 border-collapse: collapse;
-                margin-top: 20px;
+                margin-top: 30px;
                 background-color: white;
 
             }
@@ -99,7 +99,7 @@
         </head>
 
         <body>
-            <div class="container">
+            <div class="container mt-2">
                 <h1>Customers Orders</h1>
                 <br>
 
@@ -156,7 +156,7 @@
                             
                             <td>
 
-                            <a class="btn btn-primary btn btn-sm" href="{{ url('/on_the_way/' . $order->id) }}">On the way</a>
+                            <a class="btn btn-info btn btn-sm" href="{{ url('/on_the_way/' . $order->id) }}">On the way</a>
 
                             <br>
 
@@ -169,7 +169,7 @@
 
                             <td>
 
-                            <a class="btn btn-secondary" href="{{ url('/print_pdf/'.$order->id) }}" >Print PDF</a>
+                            <a class="btn btn-primary btn btn-sm" href="{{ url('/print_pdf/'.$order->id) }}" >PDF</a>
 
                             </td>
                         </tr>

@@ -22,7 +22,7 @@
 
         @include("admin.navbar")
 
-        <div class="container">
+        <div class="container mt-2">
 
             
             <h1>Users</h1>
@@ -44,7 +44,7 @@
             <a href="{{ route('adduser') }}" class="btn btn-primary btn btn-sm" style="width: 150px;">+Add users</a>
 
 
-            <div style="position: relative; top: 60px; right: -100px ">
+            <div style="position: relative; top: 30px; right: -100px ">
 
 
 
