@@ -36,7 +36,7 @@
         }
 
         h1 {
-            
+
             color: #333;
             margin-bottom: 20px;
         }
@@ -79,28 +79,30 @@
             color: #fff;
             text-decoration: none;
             text-align: center;
-            
+
         }
 
         a.btn-primary:hover {
             background-color: #0056b3;
-            
+
         }
 
         table {
             width: 75%;
             border-collapse: collapse;
-            
+
             background-color: white;
             color: black;
-          
+
 
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #ddd;
+
         }
 
         th {
@@ -121,6 +123,4 @@
         a.action-link:hover {
             text-decoration: underline;
         }
-
-        
     </style>

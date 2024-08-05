@@ -14,6 +14,8 @@
 
 
 
+
+
 </head>
 
 <body>
@@ -22,18 +24,25 @@
 
         @include("admin.navbar")
 
+
+
+
+
         <div class="container mt-2">
 
-            
+
+
             <h1>Users</h1>
 
-            
+
             <form action="{{url('/search')}}" method="get">
 
                 @csrf
 
                 <div>
-                    <input type="text" name="search" placeholder="Search by User" style="width: 400px; right:-60px; color:blue;">
+
+
+                    <input type="text" name="search" placeholder="Search by User" style="width: 300px; right:-120px; color:blue;">
 
                     <input type="submit" value="Search" class="btn btn-success">
                 </div>
@@ -41,8 +50,8 @@
             </form>
 
 
-            <a href="{{ route('adduser') }}" class="btn btn-primary btn btn-sm" style="width: 150px;">+Add users</a>
 
+            <a href="{{ route('adduser') }}" class="btn btn-primary btn btn-sm" style="width: 150px;">+Add users</a>
 
             <div style="position: relative; top: 30px; right: -100px ">
 
@@ -66,7 +75,7 @@
 
                         <td><a class="btn btn-success" href="{{url('/editteuser',$data->id)}}">Edit</a></td>
 
-                        @if($data->usertype=="0")
+                        @if($data->usertype=="1")
 
                         <td><a class="btn btn-danger" href="{{url('/deleteuser',$data->id)}}">Delete</a></td>
                         @else

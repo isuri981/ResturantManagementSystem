@@ -74,31 +74,50 @@
 
 <body>
 
-    <div class="container-scroller">
-        @include("admin.navbar")
+<div class="container-scroller">
+    @include("admin.navbar")
 
-        <div class="form-container">
-            <h1>Add Chef</h1>
-            <form action="{{url('/uploadchef')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div>
-                    <label for="name">Name</label>
-                    <input type="text" name="name" required placeholder="Enter name">
-                </div>
-                <div>
-                    <label for="speciality">Speciality</label>
-                    <input type="text" name="speciality" required placeholder="Enter speciality">
-                </div>
-                <div>
-                    <label for="image">Image</label>
-                    <input type="file" name="image" required>
-                </div>
-                <div>
-                    <input type="submit" value="Save">
-                </div>
-            </form>
-        </div>
+    <div class="form-container">
+        <h1>Add Chef</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ url('/uploadchef') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" required placeholder="Enter name">
+                @error('name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <label for="speciality">Speciality</label>
+                <input type="text" name="speciality" required placeholder="Enter speciality">
+                @error('speciality')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <label for="image">Image</label>
+                <input type="file" name="image" required>
+                @error('image')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <input type="submit" value="Save">
+            </div>
+        </form>
     </div>
+</div>
+
 
     @include("admin.adminscript")
 

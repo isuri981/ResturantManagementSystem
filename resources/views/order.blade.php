@@ -187,13 +187,13 @@
 
     <div class="div_center">
 
-        <table>
+        <table class="table">
             <tr>
 
-                <th>Food Name</th>
-                <th>Price</th>
-                <th>Delivery status</th>
-                <th>Image</th>
+                <th style="background-color: dark;">Food Name</th>
+                <th style="background-color: dark;">Price</th>
+                <th style="background-color: dark;">Delivery status</th>
+                <th style="background-color: dark;">Image</th>
             </tr>
 
             @foreach($order as $order)
@@ -204,7 +204,7 @@
                 <td>{{$order->price}}</td>
                 <td>{{$order->payment_status}}</td>
                 <td>
-                    <img height="200" width="300" src="/foodimage/{{ $order->image }}">
+                    <img height="100" width="100" src="/foodimage/{{ $order->image }}">
                 </td>
 
 
@@ -222,6 +222,8 @@
         </table>
 
     </div>
+    <br>
+    
 
 
     <!-- ***** Footer Start ***** -->

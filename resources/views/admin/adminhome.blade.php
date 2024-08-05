@@ -26,7 +26,7 @@
     @include("admin.navbar")
     
 
-  </div>
+  
 
 
                      
@@ -41,7 +41,7 @@
 
 
 
-
+  </div>
 
 
 </body>

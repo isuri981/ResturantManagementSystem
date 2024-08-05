@@ -6,8 +6,9 @@
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
             <br>
             
-            <h1 class="text-white">Klassy Cafe</h1>
+            <h2 class="text-white">Klassy Cafe</h2>
         </div>
+         
         <ul class="nav">
             <li class="nav-item profile">
                 <div class="profile-desc">
@@ -62,7 +63,7 @@
                 <span class="nav-link">Navigation</span>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="{{url('/redirect')}}">
+                <a class="nav-link" href="{{url('/dashboard')}}">
                     <span class="menu-icon">
                         <i class="mdi mdi-speedometer"></i>
                     </span>
@@ -112,7 +113,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="{{url('/orders')}}">
+                <a class="nav-link" href="{{url('/documentation')}}">
                     <span class="menu-icon">
                         <i class="mdi mdi-chart-bar"></i>
                     </span>

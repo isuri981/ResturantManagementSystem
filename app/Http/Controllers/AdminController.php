@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 
+use App\Models\Documentation;
+
 
 
 
@@ -162,6 +164,8 @@ class AdminController extends Controller
             return redirect('login');
         }
     }
+
+   
 
 
     public function viewchef()

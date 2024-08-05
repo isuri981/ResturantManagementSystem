@@ -52,7 +52,7 @@
             }
         </style>
     </head>
-
+    
     <body>
         <div class="container-scroller">
             <div class="row p-0 m-0 proBanner d-flex" id="proBanner">
@@ -83,9 +83,7 @@
                                 <div class="card corona-gradient-card">
                                     <div class="card-body py-0 px-0 px-sm-3">
                                         <div class="row align-items-center">
-                                            <div class="col-4 col-sm-3 col-xl-2">
-                                                <img src="assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
-                                            </div>
+                                            
 
                                         </div>
                                     </div>
@@ -109,7 +107,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h6 class="text-muted font-weight-normal">Potential growth</h6>
+                                        <h6 class="text-muted font-weight-normal">Food Menu</h6>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +127,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h6 class="text-muted font-weight-normal">Revenue current</h6>
+                                        <h6 class="text-muted font-weight-normal">Chefs</h6>
                                     </div>
                                 </div>
                             </div>
@@ -140,16 +138,16 @@
                                             <div class="col-9">
                                                 <div class="d-flex align-items-center align-self-start">
                                                     <h3 class="mb-0">$12.34</h3>
-                                                    <p class="text-danger ms-2 mb-0 font-weight-medium">-2.4%</p>
+                                                    <p class="text-success ms-2 mb-0 font-weight-medium">+12.4%</p>
                                                 </div>
                                             </div>
                                             <div class="col-3">
-                                                <div class="icon icon-box-danger">
-                                                    <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                                                <div class="icon icon-box-success">
+                                                    <span class="mdi mdi-arrow-top-right icon-item"></span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <h6 class="text-muted font-weight-normal">Daily Income</h6>
+                                        <h6 class="text-muted font-weight-normal">Orders</h6>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +167,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h6 class="text-muted font-weight-normal">Expense current</h6>
+                                        <h6 class="text-muted font-weight-normal">Reservation</h6>
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +189,7 @@
                                         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                                             <div class="text-md-center text-xl-left">
                                                 <h6 class="mb-1">Transfer to Paypal</h6>
-                                                <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                                                <p class="text-muted mb-0">07 Jan 2024, 09:12AM</p>
                                             </div>
                                             <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
                                                 <h6 class="font-weight-bold mb-0">$236</h6>
@@ -200,7 +198,7 @@
                                         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                                             <div class="text-md-center text-xl-left">
                                                 <h6 class="mb-1">Tranfer to Stripe</h6>
-                                                <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                                                <p class="text-muted mb-0">07 Jan 2024, 09:12AM</p>
                                             </div>
                                             <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
                                                 <h6 class="font-weight-bold mb-0">$593</h6>
@@ -210,218 +208,7 @@
                                 </div>
                             </div>
 
-
-
-
-                            <div class="row ">
-                                <div class="col-12 grid-margin">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Order Status</h4>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
-                                                                <div class="form-check form-check-muted m-0">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" class="form-check-input">
-                                                                        <i class="input-helper"></i></label>
-                                                                </div>
-                                                            </th>
-                                                            <th> Client Name </th>
-                                                            <th> Order No </th>
-                                                            <th> Product Cost </th>
-                                                            <th> Project </th>
-                                                            <th> Payment Mode </th>
-                                                            <th> Start Date </th>
-                                                            <th> Payment Status </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check form-check-muted m-0">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" class="form-check-input">
-                                                                        <i class="input-helper"></i></label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <img src="assets/images/faces/face1.jpg" alt="image">
-                                                                <span class="ps-2">Henry Klein</span>
-                                                            </td>
-                                                            <td> 02312 </td>
-                                                            <td> $14,500 </td>
-                                                            <td> Dashboard </td>
-                                                            <td> Credit card </td>
-                                                            <td> 04 Dec 2019 </td>
-                                                            <td>
-                                                                <div class="badge badge-outline-success">Approved</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check form-check-muted m-0">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" class="form-check-input">
-                                                                        <i class="input-helper"></i></label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <img src="assets/images/faces/face2.jpg" alt="image">
-                                                                <span class="ps-2">Estella Bryan</span>
-                                                            </td>
-                                                            <td> 02312 </td>
-                                                            <td> $14,500 </td>
-                                                            <td> Website </td>
-                                                            <td> Cash on delivered </td>
-                                                            <td> 04 Dec 2019 </td>
-                                                            <td>
-                                                                <div class="badge badge-outline-warning">Pending</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check form-check-muted m-0">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" class="form-check-input">
-                                                                        <i class="input-helper"></i></label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <img src="assets/images/faces/face5.jpg" alt="image">
-                                                                <span class="ps-2">Lucy Abbott</span>
-                                                            </td>
-                                                            <td> 02312 </td>
-                                                            <td> $14,500 </td>
-                                                            <td> App design </td>
-                                                            <td> Credit card </td>
-                                                            <td> 04 Dec 2019 </td>
-                                                            <td>
-                                                                <div class="badge badge-outline-danger">Rejected</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check form-check-muted m-0">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" class="form-check-input">
-                                                                        <i class="input-helper"></i></label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <img src="assets/images/faces/face3.jpg" alt="image">
-                                                                <span class="ps-2">Peter Gill</span>
-                                                            </td>
-                                                            <td> 02312 </td>
-                                                            <td> $14,500 </td>
-                                                            <td> Development </td>
-                                                            <td> Online Payment </td>
-                                                            <td> 04 Dec 2019 </td>
-                                                            <td>
-                                                                <div class="badge badge-outline-success">Approved</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check form-check-muted m-0">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" class="form-check-input">
-                                                                        <i class="input-helper"></i></label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <img src="assets/images/faces/face4.jpg" alt="image">
-                                                                <span class="ps-2">Sallie Reyes</span>
-                                                            </td>
-                                                            <td> 02312 </td>
-                                                            <td> $14,500 </td>
-                                                            <td> Website </td>
-                                                            <td> Credit card </td>
-                                                            <td> 04 Dec 2019 </td>
-                                                            <td>
-                                                                <div class="badge badge-outline-success">Approved</div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
-                                <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <h4 class="card-title">Messages</h4>
-                                                <p class="text-muted mb-1 small">View all</p>
-                                            </div>
-                                            <div class="preview-list">
-                                                <div class="preview-item border-bottom">
-                                                    <div class="preview-thumbnail">
-                                                        <img src="assets/images/faces/face6.jpg" alt="image" class="rounded-circle">
-                                                    </div>
-                                                    <div class="preview-item-content d-flex flex-grow">
-                                                        <div class="flex-grow">
-                                                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                                                <h6 class="preview-subject">Leonard</h6>
-                                                                <p class="text-muted text-small">5 minutes ago</p>
-                                                            </div>
-                                                            <p class="text-muted">Well, it seems to be working now.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="preview-item border-bottom">
-                                                    <div class="preview-thumbnail">
-                                                        <img src="assets/images/faces/face8.jpg" alt="image" class="rounded-circle">
-                                                    </div>
-                                                    <div class="preview-item-content d-flex flex-grow">
-                                                        <div class="flex-grow">
-                                                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                                                <h6 class="preview-subject">Luella Mills</h6>
-                                                                <p class="text-muted text-small">10 Minutes Ago</p>
-                                                            </div>
-                                                            <p class="text-muted">Well, it seems to be working now.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="preview-item border-bottom">
-                                                    <div class="preview-thumbnail">
-                                                        <img src="assets/images/faces/face9.jpg" alt="image" class="rounded-circle">
-                                                    </div>
-                                                    <div class="preview-item-content d-flex flex-grow">
-                                                        <div class="flex-grow">
-                                                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                                                <h6 class="preview-subject">Ethel Kelly</h6>
-                                                                <p class="text-muted text-small">2 Hours Ago</p>
-                                                            </div>
-                                                            <p class="text-muted">Please review the tickets</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="preview-item border-bottom">
-                                                    <div class="preview-thumbnail">
-                                                        <img src="assets/images/faces/face11.jpg" alt="image" class="rounded-circle">
-                                                    </div>
-                                                    <div class="preview-item-content d-flex flex-grow">
-                                                        <div class="flex-grow">
-                                                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                                                <h6 class="preview-subject">Herman May</h6>
-                                                                <p class="text-muted text-small">4 Hours Ago</p>
-                                                            </div>
-                                                            <p class="text-muted">Thanks a lot. It was easy to fix it .</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-body">
@@ -491,6 +278,149 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+                            <div class="row ">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Order Status</h4>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <div class="form-check form-check-muted m-0">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input">
+                                                                        <i class="input-helper"></i></label>
+                                                                </div>
+                                                            </th>
+                                                            <th> Client Name </th>
+                                                            <th> Order No </th>
+                                                            <th> Product Cost </th>
+                                                            <th> Project </th>
+                                                            <th> Payment Mode </th>
+                                                            <th> Start Date </th>
+                                                            <th> Payment Status </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check form-check-muted m-0">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input">
+                                                                        <i class="input-helper"></i></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <img src="assets/images/faces/face1.jpg" alt="image">
+                                                                <span class="ps-2">Henry Klein</span>
+                                                            </td>
+                                                            <td> 02312 </td>
+                                                            <td> $14,500 </td>
+                                                            <td> Dashboard </td>
+                                                            <td> Credit card </td>
+                                                            <td> 04 March 2024 </td>
+                                                            <td>
+                                                                <div class="badge badge-outline-success">Approved</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check form-check-muted m-0">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input">
+                                                                        <i class="input-helper"></i></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <img src="assets/images/faces/face2.jpg" alt="image">
+                                                                <span class="ps-2">Estella Bryan</span>
+                                                            </td>
+                                                            <td> 02312 </td>
+                                                            <td> $14,500 </td>
+                                                            <td> Website </td>
+                                                            <td> Cash on delivered </td>
+                                                            <td> 04 Aprial 2024 </td>
+                                                            <td>
+                                                                <div class="badge badge-outline-warning">Pending</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check form-check-muted m-0">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input">
+                                                                        <i class="input-helper"></i></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <img src="assets/images/faces/face5.jpg" alt="image">
+                                                                <span class="ps-2">Lucy Abbott</span>
+                                                            </td>
+                                                            <td> 02312 </td>
+                                                            <td> $14,500 </td>
+                                                            <td> App design </td>
+                                                            <td> Credit card </td>
+                                                            <td> 04 May 2024 </td>
+                                                            <td>
+                                                                <div class="badge badge-outline-danger">Rejected</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check form-check-muted m-0">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input">
+                                                                        <i class="input-helper"></i></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <img src="assets/images/faces/face3.jpg" alt="image">
+                                                                <span class="ps-2">Peter Gill</span>
+                                                            </td>
+                                                            <td> 02312 </td>
+                                                            <td> $14,500 </td>
+                                                            <td> Development </td>
+                                                            <td> Online Payment </td>
+                                                            <td> 06 May 2024 </td>
+                                                            <td>
+                                                                <div class="badge badge-outline-success">Approved</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check form-check-muted m-0">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input">
+                                                                        <i class="input-helper"></i></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <img src="assets/images/faces/face4.jpg" alt="image">
+                                                                <span class="ps-2">Sallie Reyes</span>
+                                                            </td>
+                                                            <td> 02312 </td>
+                                                            <td> $14,500 </td>
+                                                            <td> Website </td>
+                                                            <td> Credit card </td>
+                                                            <td> 12 June 2024 </td>
+                                                            <td>
+                                                                <div class="badge badge-outline-success">Approved</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             </div>
                         </div>
                     </div>

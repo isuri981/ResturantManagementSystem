@@ -105,14 +105,33 @@ class HomeController extends Controller
     }
 
 
+    // public function remove($id)
+    // {
+    //     $data = cart::find($id);
+
+    //     $data->delete();
+
+    //     return redirect()->back();
+    // }
+
     public function remove($id)
     {
         $data = cart::find($id);
 
+        if (!$data) {
+            // Handle case where record with $id is not found, maybe redirect or show an error message
+            return redirect()->back()->with('error', 'Record not found.');
+        }
+
         $data->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Record deleted successfully.');
     }
+
+
+
+
+
 
     public function orderconfirm(Request $request)
     {
@@ -169,9 +188,8 @@ class HomeController extends Controller
 
         $order = Order::where('id', $user)->get();
 
-        return view('order',compact('count', 'order'));
+        return view('order', compact('count', 'order'));
     }
 
     
-
 }
