@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\IngredientController;
+use App\Models\Ingredient;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,6 +53,10 @@ Route::get("/showcart/{id}",[HomeController::class,"showcart"]);
 
 Route::get("/remove/{id}",[HomeController::class,"remove"]);
 
+
+
+
+
 Route::post("/orderconfirm",[HomeController::class,"orderconfirm"]);
 
 Route::get("/orders",[AdminController::class,"orders"]);
@@ -68,6 +74,22 @@ Route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf'])->name('prin
 Route::get("/search",[AdminController::class,"search"]);
 
 Route::get('/myorders', [HomeController::class,'myorders']);
+
+Route::get('/ingredients', [IngredientController::class,'index']);
+
+
+Route::post('/adduser', [HomeController::class, 'store'])->name('adduser');
+
+
+
+
+
+
+
+
+
+
+
 
 
 

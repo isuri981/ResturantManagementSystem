@@ -20,6 +20,8 @@ use Stripe\Stripe;
 
 use Stripe\Charge;
 
+use App\Models\User;
+
 
 
 class HomeController extends Controller
@@ -114,18 +116,27 @@ class HomeController extends Controller
     //     return redirect()->back();
     // }
 
+    // public function remove($id)
+    // {
+    //     $data = cart::find($id);
+
+    //     if (!$data) {
+    //         // Handle case where record with $id is not found, maybe redirect or show an error message
+    //         return redirect()->back()->with('error', 'Record not found.');
+    //     }
+
+    //     $data->delete();
+
+    //     return redirect()->back()->with('success', 'Record deleted successfully.');
+    // }
+
     public function remove($id)
     {
-        $data = cart::find($id);
+        // Logic to remove the item from the cart
+        Cart::remove($id); // Example method, adjust as needed
 
-        if (!$data) {
-            // Handle case where record with $id is not found, maybe redirect or show an error message
-            return redirect()->back()->with('error', 'Record not found.');
-        }
-
-        $data->delete();
-
-        return redirect()->back()->with('success', 'Record deleted successfully.');
+        // Redirect back to the cart or a specific page
+        return redirect()->back()->with('success', 'Item removed from cart');
     }
 
 
@@ -191,5 +202,23 @@ class HomeController extends Controller
         return view('order', compact('count', 'order'));
     }
 
-    
+    public function store(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'usertype' => 'required|string',
+        ]);
+
+        // Create a new user
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->usertype = $request->input('usertype');
+        $user->save();
+
+        // Redirect or return response
+        return redirect()->back()->with('success', 'User added successfully');
+    }
 }

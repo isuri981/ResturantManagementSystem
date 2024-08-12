@@ -29,34 +29,95 @@
     <link rel="stylesheet" href="assets/css/lightbox.css">
 
     <style type="text/css">
-        .div_center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 100px;
-        }
+    /* Center the table container */
+    .div_center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 100px;
+    }
 
+    /* Table styling */
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        max-width: 1000px;
+        background: linear-gradient(145deg, #fff, #f1f1f1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 50px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center; /* Center align text */
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #333;
+        color: #fff;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    td {
+        font-size: 16px;
+        color: #333;
+    }
+
+    /* Hover effects */
+    tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.01);
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Image styling */
+    td img {
+        display: block;
+        margin: 0 auto; /* Center image horizontally */
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    td img:hover {
+        transform: scale(1.1);
+    }
+
+    /* Additional styling for responsiveness */
+    @media (max-width: 768px) {
         table {
-            border: 2px solid black;
-            text-align: center;
-            width: 800px;
-            margin-top: 100px;
+            width: 100%;
+            font-size: 14px;
         }
 
-        th {
-            border: 2px solid orangered;
-            background-color: black;
-            color: white;
-            font-size: 19px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        td {
-            border: 1px solid orangered;
+        th, td {
             padding: 10px;
         }
-    </style>
+
+        td img {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        th, td {
+            padding: 8px;
+            font-size: 12px;
+        }
+
+        td img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+</style>
+
+
 
 </head>
 
@@ -204,7 +265,7 @@
                 <td>{{$order->price}}</td>
                 <td>{{$order->payment_status}}</td>
                 <td>
-                    <img height="100" width="100" src="/foodimage/{{ $order->image }}">
+                    <img height="100" width="100" src="/foodimage/1719994387.jpg">
                 </td>
 
 
@@ -222,6 +283,7 @@
         </table>
 
     </div>
+    <br>
     <br>
     
 

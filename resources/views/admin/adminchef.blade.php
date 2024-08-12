@@ -9,6 +9,11 @@
 <head>
 
 
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+  
+
 
   @include("admin.admincss")
 
@@ -49,9 +54,22 @@
             <td>{{$data->speciality}}</td>
             <td><img height="100" width="100" src="/chefimage/{{$data->image}}"></td>
 
-            <td><a class="btn btn-success" href="{{url('/updatechef', $data->id)}}">Edit</a></td>
+            <td>
+              <a class="btn btn-success" href="{{ url('/updatechef', $data->id) }}" title="Edit">
+                <i class="fas fa-edit"></i>
+              </a>
+            </td>
 
-            <td><a class="btn btn-danger" href="{{url('/deletechef', $data->id)}}">Delete</a></td>
+            <td>
+              <a class="btn btn-danger" href="{{ url('/deletechef', $data->id) }}" title="Delete" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this item?')) { document.getElementById('delete-form-{{ $data->id }}').submit(); }">
+                <i class="fas fa-trash"></i>
+              </a>
+              <form id="delete-form-{{ $data->id }}" action="{{ url('/deletechef', $data->id) }}" method="POST" style="display: none;">
+                @csrf
+                @method('DELETE')
+              </form>
+            </td>
+
 
           </tr>
 
