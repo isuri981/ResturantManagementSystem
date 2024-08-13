@@ -20,8 +20,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 use App\Models\Documentation;
 
-
-
+use App\Models\recipes;
 
 class AdminController extends Controller
 {
@@ -165,7 +164,7 @@ class AdminController extends Controller
         }
     }
 
-   
+
 
 
     public function viewchef()
@@ -315,4 +314,14 @@ class AdminController extends Controller
         return $pdf->download('invoice.pdf');
     }
 
+    public function recipes()
+    {
+        $data = recipes::all();
+
+        return view("admin.recipes", compact("data"));
+    }
+
+    
+
+    
 }

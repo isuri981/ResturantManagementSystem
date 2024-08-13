@@ -3,7 +3,7 @@
 
     <head>
 
-        <link rel="shortcut icon" href="assets/images/faces/face01.jpeg">
+        
         <style type="text/css">
             /* Chart.js */
             @keyframes chartjs-render-animation {
@@ -59,7 +59,7 @@
             }
 
             .container-fluid {
-                padding: 20px;
+                padding: 50px;
             }
 
             .row {

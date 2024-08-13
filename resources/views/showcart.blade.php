@@ -185,6 +185,53 @@
         .breadcrumb .breadcrumb-item a {
             color: #ff5722;
         }
+
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .item-title {
+            font-weight: bold;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group-btn {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-input {
+            width: 60px;
+        }
+
+        .btn-dark {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn-dark:hover {
+            background-color: #555;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
     </style>
 
 </head>
@@ -292,34 +339,38 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <input type="text" name="foodname[]" value="{{ $item->title }}" hidden>
-                                            {{ $item->title }}
+
+
+                                            <span class="item-title ml-2">{{ $item->title }}</span>
                                         </div>
                                     </td>
-                                    <td><input type="text" name="price[]" value="{{ $item->price }}" hidden>${{ $item->price }}</td>
                                     <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
+                                        <input type="text" name="price[]" value="{{ $item->price }}" hidden>
+                                        $<span class="item-price">{{ $item->price }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity mx-auto" style="width: 120px;">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1 sub">
+                                                <button class="btn btn-sm btn-dark btn-minus p-2" data-id="{{ $item->id }}">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm border-0 text-center quantity-input" value="{{ $item->quantity_id }}">
+                                            <input type="text" class="form-control form-control-sm border-0 text-center quantity-input" value="{{ $item->quantity_id }}" readonly>
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1 add">
+                                                <button class="btn btn-sm btn-dark btn-plus p-2" data-id="{{ $item->id }}">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </td>
-
-                                    <td>${{ $item->price * $item->quantity_id }}</td>
+                                    <td>
+                                        $<span class="item-total">{{ $item->price * $item->quantity_id }}</span>
+                                    </td>
                                     <td>
                                         <button class="btn btn-sm btn-danger remove" data-id="{{ $item->id }}">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </td>
-
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -352,15 +403,15 @@
 
                         <div id="appear" align="center" style="padding: 10px; display:none;">
                             <div style="padding: 10px;">
-                                <label>Name</label>
+                                
                                 <input type="text" name="name" placeholder="Name" class="form-control">
                             </div>
                             <div style="padding: 10px;">
-                                <label>Phone</label>
+                                
                                 <input type="number" name="phone" placeholder="Phone Number" class="form-control">
                             </div>
                             <div style="padding: 10px;">
-                                <label>Address</label>
+                                
                                 <input type="text" name="address" placeholder="Address" class="form-control">
                             </div>
                             <div style="padding: 10px;">
@@ -447,7 +498,46 @@
         });
     </script>
 
-    
+    <script>
+        document.querySelectorAll('.btn-minus').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const input = row.querySelector('.quantity-input');
+                let quantity = parseInt(input.value);
+                if (quantity > 1) {
+                    quantity--;
+                    input.value = quantity;
+                    updateTotal(row, quantity);
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-plus').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const input = row.querySelector('.quantity-input');
+                let quantity = parseInt(input.value);
+                quantity++;
+                input.value = quantity;
+                updateTotal(row, quantity);
+            });
+        });
+
+        document.querySelectorAll('.remove').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                row.remove();
+                // Optionally, update the cart total and perform any additional actions
+            });
+        });
+
+        function updateTotal(row, quantity) {
+            const price = parseFloat(row.querySelector('.item-price').textContent);
+            const total = price * quantity;
+            row.querySelector('.item-total').textContent = total.toFixed(2);
+        }
+    </script>
+
 
 
 

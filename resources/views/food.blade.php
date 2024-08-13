@@ -4,6 +4,8 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
      <title>Klassy Cafe </title>
  </head>
  <style>
@@ -46,6 +48,31 @@
          outline: none;
          box-shadow: 0 0 0 2px rgba(243, 156, 18, 0.5);
      }
+
+     .quantity-input {
+         width: 80px;
+         padding: 8px;
+         border: 2px solid #f0ad4e;
+         border-radius: 5px;
+         text-align: center;
+         font-size: 16px;
+         outline: none;
+         transition: border-color 0.3s ease-in-out;
+     }
+
+     .quantity-input:focus {
+         border-color: #d9534f;
+     }
+
+     .quantity-input::-webkit-inner-spin-button,
+     .quantity-input::-webkit-outer-spin-button {
+         -webkit-appearance: none;
+         margin: 0;
+     }
+
+     .quantity-input:hover {
+         border-color: #d9534f;
+     }
  </style>
 
  <body>
@@ -59,7 +86,7 @@
                  <div class="col-lg-4">
                      <div class="section-heading">
                          <h6>Our Menu</h6>
-                         <h2>Our selection of cakes with quality taste</h2>
+                         <h2>Our selection of shorteats with quality taste</h2>
                      </div>
                  </div>
              </div>
@@ -89,11 +116,15 @@
                                  </div>
                              </div>
 
-                             <input type="number" name="quantity" min="2" value="1" style="width: 80px;">
+                             <input type="number" name="quantity" min="2" value="1" class="quantity-input">
 
 
 
-                             <input class="btn btn-warning add-cart-button" type="submit" value="Add to Cart">
+
+                             <button class="btn btn-warning add-cart-button" title="Add to cart">
+                                 <i class="fas fa-shopping-cart"></i>
+                             </button>
+
 
 
                          </div>

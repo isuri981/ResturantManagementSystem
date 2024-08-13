@@ -28,6 +28,38 @@
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
 
+    <style>
+        /* Styling for the cart icon link */
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            /* White text color for the icon */
+            text-decoration: none;
+            font-size: 20px;
+            /* Adjust size of the icon */
+        }
+
+        .cart-icon .fa-shopping-cart {
+            margin-right: 8px;
+            /* Space between icon and count */
+        }
+
+        .cart-count {
+            font-size: 16px;
+            /* Size of the cart count */
+            background-color: #333;
+            /* Background color for the count */
+            color: #fff;
+            /* Text color for the count */
+            border-radius: 12px;
+            /* Rounded corners */
+            padding: 2px 8px;
+            /* Padding around the count */
+            display: inline-block;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -51,110 +83,64 @@
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/klassy-logo.png" align="klassy cafe">
-
-                            <a class="menu-trigger">
-
-                                <span>Menu</span>
-
-                            </a>
-
+                            <img src="assets/images/klassy-logo.png" alt="Klassy Cafe Logo">
                         </a>
                         <!-- ***** Logo End ***** -->
+
+                        <!-- ***** Menu Trigger ***** -->
+                        <a class="menu-trigger">
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu Trigger End ***** -->
+
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#about">About</a></li>
-
-                            <!-- 
-                            <li class="submenu">
-                                <a href="javascript:;">Drop Down</a>
-                                <ul>
-                                    <li><a href="#">Drop Down Page 1</a></li>
-                                    <li><a href="#">Drop Down Page 2</a></li>
-                                    <li><a href="#">Drop Down Page 3</a></li>
-                                </ul>
-                            </li>
-                        -->
                             <li class="scroll-to-section"><a href="#menu">Menu</a></li>
                             <li class="scroll-to-section"><a href="#chefs">Chefs</a></li>
-                            <!-- <li class="submenu">
-                                <a href="javascript:;">Features</a>
-                                <ul>
-                                    <li><a href="#">Features Page 1</a></li>
-                                    <li><a href="#">Features Page 2</a></li>
-                                    <li><a href="#">Features Page 3</a></li>
-                                    <li><a href="#">Features Page 4</a></li>
-                                </ul>
-                            </li> -->
-                            <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
-
-
-                            <li class="scroll-to-section"><a href="{{ url('/myorders') }}">
-                                    My Orders</a></li>
-
-                            <li class="scroll-to-section"><a href="{{ url('/ingredients') }}">
-                                    Ingredients</a></li>
-
-
-                            <li class="scroll-to-section" style="background-color: red;">
-
+                            <li class="scroll-to-section">
+                                <a href="{{ url('/myorders') }}">My Orders</a>
+                            </li>
+                            <li class="scroll-to-section">
+                                <a href="{{ url('/ingredients') }}">Ingredients</a>
+                            </li>
+                            <li class="scroll-to-section">
                                 @auth
-
-
-
-                                <a href="{{ url('/showcart', Auth::user()->id) }}">
-
-                                    Cart{{$count}}
-
-
-
+                                <a href="{{ url('/showcart', Auth::user()->id) }}" class="cart-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="cart-count">{{$count}}</span>
                                 </a>
-
                                 @endauth
-
                                 @guest
-
-                                Cart[0]
-
+                                <a href="#" class="cart-icon" title="Cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="cart-count">0</span>
+                                </a>
                                 @endguest
-
                             </li>
 
 
+                            <!-- Authentication Links -->
+                            @if (Route::has('login'))
                             <li>
-
-                                @if (Route::has('login'))
-                                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                                    @auth
-                            <li>
-                                <x-app-layout>
-
-                                </x-app-layout>
-
+                                @auth
+                                <x-app-layout></x-app-layout>
+                                @else
+                                <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                                @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                                @endif
+                                @endauth
                             </li>
-                            @else
-                            <li><a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a></li>
-
-                            @if (Route::has('register'))
-                            <li><a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a></li>
                             @endif
-                            @endauth
+                        </ul>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
                 </div>
-                @endif
 
-                </li>
-
-
-                </ul>
-                <!-- <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a> -->
-                <!-- ***** Menu End ***** -->
-                </nav>
             </div>
-        </div>
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
@@ -216,7 +202,7 @@
                             <h6>About Us</h6>
                             <h2>We Leave A Delicious Memory For You</h2>
                         </div>
-                        <p>Klassy Cafe is one of the best <a href="https://templatemo.com/tag/restaurant" target="_blank" rel="sponsored">restaurant HTML templates</a> with Bootstrap v4.5.2 CSS framework. You can download and feel free to use this website template layout for your restaurant business. You are allowed to use this template for commercial purposes. <br><br>You are NOT allowed to redistribute the template ZIP file on any template donwnload website. Please contact us for more information.</p>
+                        <p>Welcome to Klassy Cafe, where culinary excellence meets a cozy and inviting atmosphere. Established with a passion for creating delightful dining experiences, Klassy Cafe has quickly become a beloved destination for food lovers. Our cafe is more than just a place to eat—it's a space where community, comfort, and creativity come together. <br><br>At Klassy Cafe, we believe that great food starts with the finest ingredients. Our talented chefs meticulously craft each dish, blending classic flavors with modern twists to satisfy every palate. </p>
                         <div class="row">
                             <div class="col-4">
                                 <img src="assets/images/about-thumb-01.jpg" alt="">

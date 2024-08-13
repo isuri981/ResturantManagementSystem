@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Klassy Cafe</title>
 
     <style>
@@ -89,6 +91,65 @@
             margin-top: 5px;
             font-weight: 400;
         }
+
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons li {
+            display: inline-block;
+        }
+
+        .social-icons a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #f0ad4e;
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .social-icons a:hover {
+            background-color: #d9534f;
+        }
+
+        .social-icons i {
+            font-size: 20px;
+
+        }
+
+        .down-content {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .down-content h4 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .specialty {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #f0ad4e;
+            color: white;
+            font-size: 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .specialty:hover {
+            background-color: #d9534f;
+        }
     </style>
 </head>
 
@@ -116,16 +177,18 @@
                             <div class="thumb">
                                 <div class="overlay"></div>
                                 <ul class="social-icons">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-behance"></i></a></li>
                                 </ul>
+
                                 <img class="chef-image" src="chefimage/{{$data2->image}}" alt="Chef #1">
                             </div>
                             <div class="down-content">
                                 <h4>{{$data2->name}}</h4>
-                                <span class="specialty">{{$data2->specality}}</span>
+                                <span class="specialty">{{$data2->speciality}}</span>
                             </div>
+
                         </div>
                     </div>
                     @endforeach
@@ -136,10 +199,11 @@
                             <div class="thumb">
                                 <div class="overlay"></div>
                                 <ul class="social-icons">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-behance"></i></a></li>
                                 </ul>
+
                                 <img class="chef-image" src="assets/images/chefs-02.jpg" alt="Chef #2">
                             </div>
                             <div class="down-content">
@@ -154,10 +218,11 @@
                             <div class="thumb">
                                 <div class="overlay"></div>
                                 <ul class="social-icons">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" class="social-icon"><i class="fab fa-behance"></i></a></li>
                                 </ul>
+
                                 <img class="chef-image" src="assets/images/chefs-03.jpg" alt="Chef #3">
                             </div>
                             <div class="down-content">
