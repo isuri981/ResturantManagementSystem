@@ -59,7 +59,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: none;
         }
 
         .ingredient-img {
@@ -173,7 +172,6 @@
             <img id="ingredientTomato" src="orderimages/tomato.png" alt="Tomato" class="ingredient-img">
             <img id="ingredientCheese" src="orderimages/cheese.png" alt="Cheese" class="ingredient-img">
             <img id="ingredientBellPepper" src="orderimages/bellpepper.png" alt="Bell Pepper" class="ingredient-img">
-            
             <img id="ingredientEgg" src="orderimages/egg.png" alt="Egg" class="ingredient-img">
             <img id="ingredientGarlic" src="orderimages/garlic.png" alt="Garlic" class="ingredient-img">
             <img id="ingredientGreenChili" src="orderimages/greenchili.png" alt="Green Chili" class="ingredient-img">
@@ -184,6 +182,11 @@
             <img id="ingredientChicken" src="orderimages/chicken.png" alt="Chicken" class="ingredient-img">
             <img id="ingredientOnion" src="orderimages/onion.png" alt="Onion" class="ingredient-img">
             <img id="ingredientLeaks" src="orderimages/leaks.png" alt="Leaks" class="ingredient-img">
+
+            <!-- Placeholder for final dish image -->
+            <img id="finalDishPizza" src="orderimages/finaldishpizza.png" alt="Final Dish - Pizza" class="ingredient-img" style="display: none;">
+            <img id="finalDishNoodles" src="orderimages/finaldishnoodles.png" alt="Final Dish - Noodles" class="ingredient-img" style="display: none;">
+            <img id="finalDishBuriyaniRice" src="orderimages/finaldishburiyani.png" alt="Final Dish - Buriyani Rice" class="ingredient-img" style="display: none;">
 
 
         </div>
@@ -245,7 +248,6 @@
                 <img src="orderimages/leaks.png" alt="Leaks">
                 <p>Leaks</p>
             </div>
-            
         </div>
 
         <div class="selected-ingredients">
@@ -254,17 +256,17 @@
         </div>
 
         <button class="submit-btn" id="placeOrderBtn">Place Order</button>
-
         <div class="confirmation" id="confirmationDiv"></div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const baseSelect = document.getElementById('base');
             const dishContainer = document.getElementById('dishContainer');
             const selectedIngredientsList = document.getElementById('selectedIngredientsList');
             const placeOrderBtn = document.getElementById('placeOrderBtn');
             const confirmationDiv = document.getElementById('confirmationDiv');
+            const finalDishImage = document.getElementById('finalDishImage');
 
             const ingredientImages = {
                 Tomato: "ingredientTomato",
@@ -281,11 +283,9 @@
                 Chicken: "ingredientChicken",
                 Onion: "ingredientOnion",
                 Leaks: "ingredientLeaks"
-
-
             };
 
-            baseSelect.addEventListener('change', function () {
+            baseSelect.addEventListener('change', function() {
                 const baseValue = baseSelect.value;
 
                 document.querySelectorAll('.dish-container img').forEach(img => {
@@ -298,7 +298,7 @@
             let selectedIngredients = [];
 
             document.querySelectorAll('.ingredient-option').forEach(option => {
-                option.addEventListener('click', function () {
+                option.addEventListener('click', function() {
                     const ingredient = option.getAttribute('data-ingredient');
                     const ingredientIndex = selectedIngredients.indexOf(ingredient);
 
@@ -325,30 +325,70 @@
                 });
             }
 
-            function sendOrder(ingredients) {
-                fetch('http://127.0.0.1:8000/api/place-order', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ ingredients }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    confirmationDiv.textContent += ' Your order has been placed!';
-                })
-                .catch(error => {
-                    confirmationDiv.textContent += ' There was an error placing your order.';
-                });
+            function updateFinalDishImage() {
+                const base = baseSelect.value;
+                if (base && selectedIngredients.length > 0) {
+                    const ingredientsList = selectedIngredients.join('_');
+                    finalDishImage.src = `orderimages/${base}_${ingredientsList}.png`; // Adjust this line if needed
+                    finalDishImage.style.display = 'block';
+                } else {
+                    finalDishImage.style.display = 'none';
+                }
             }
 
-            placeOrderBtn.addEventListener('click', function () {
+            function updateFinalDishImage() {
+                const base = baseSelect.value;
+                const finalDishPizza = document.getElementById('finalDishPizza');
+                const finalDishNoodles = document.getElementById('finalDishNoodles');
+                const finalDishBuriyaniRice = document.getElementById('finalDishBuriyaniRice');
+
+                // Hide all final dish images initially
+                finalDishPizza.style.display = 'none';
+                finalDishNoodles.style.display = 'none';
+                finalDishBuriyaniRice.style.display = 'none';
+
+                if (base && selectedIngredients.length > 0) {
+                    if (base === 'pizza') {
+                        finalDishPizza.style.display = 'block';
+                    } else if (base === 'noodles') {
+                        finalDishNoodles.style.display = 'block';
+                    } else if (base === 'buriyani_rice') {
+                        finalDishBuriyaniRice.style.display = 'block';
+                    }
+                }
+            }
+
+
+
+            function sendOrder(ingredients) {
+                fetch('http://127.0.0.1:8000/api/place-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            ingredients
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        confirmationDiv.textContent += ' Your order has been placed!';
+                    })
+                    .catch(error => {
+                        confirmationDiv.textContent += ' There was an error placing your order.';
+                    });
+            }
+
+            placeOrderBtn.addEventListener('click', function() {
                 const selectedBase = baseSelect.value;
 
                 if (selectedBase && selectedIngredients.length > 0) {
                     const orderDetails = `Order placed successfully! Base: ${selectedBase}, Ingredients: ${selectedIngredients.join(', ')}`;
                     confirmationDiv.textContent = orderDetails;
                     confirmationDiv.style.color = 'green';
+
+                    // Update and display final dish image
+                    updateFinalDishImage();
 
                     // Send the order to the backend
                     sendOrder(selectedIngredients);
