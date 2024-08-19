@@ -1,5 +1,7 @@
 <x-app-layout>
+
 </x-app-layout>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,20 +16,22 @@
         /* Card styling */
         .card {
             background-color: #fff;
+            /* White background */
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
 
+
         /* Form control styling */
         .form-control {
-            background-color: #fff;
             border: 1px solid #ced4da;
             border-radius: 4px;
             padding: 10px 15px;
             font-size: 1rem;
             color: #000;
+            /* Black text color */
             width: 100%;
             margin-bottom: 15px;
         }
@@ -48,7 +52,7 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            width: 25%;
+            width: 100%;
             margin-top: 20px;
         }
 
@@ -63,9 +67,12 @@
             }
         }
     </style>
+
+
 </head>
 
 <body>
+
 
     <div class="container-scroller">
         @include('admin.navbar')
@@ -75,7 +82,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title" style="color: black;">Add New User</h2>
+                            <h2 class="card-title" style="color: black;">Update User</h2>
 
                             <!-- Success Message -->
                             @if(session('success'))
@@ -94,27 +101,29 @@
                                 </ul>
                             </div>
                             @endif
+
                             <br>
-                            <form action="{{ route('adduser') }}" method="POST">
+                            <form action="{{ route('updateuser', $user->id) }}" method="POST" style="margin-top: 20px;">
                                 @csrf
-                                <div class="form-group">
-                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="name" class="form-label">Name:</label>
-                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+                                <div style="margin-bottom: 15px;">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;">Name:</label><br>
+                                    <input style="color: black; padding: 5px; width: 100%;" type="text" name="name" value="{{ old('name', $user->name) }}" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="email" class="form-label">Email:</label>
-                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                                <div style="margin-bottom: 15px;">
+                                    <label style="font-weight: bold; text-align:left; color: #333; text-align: left; display: block; width: 100%;">Email:</label><br>
+                                    <input style="color: black; padding: 5px; width: 100%;" type="email" name="email" value="{{ old('email', $user->email) }}" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="usertype" class="form-label">User Type:</label>
-                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="usertype" name="usertype" class="form-control" value="{{ old('usertype') }}" required>
+                                <div style="margin-bottom: 15px;">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;">User Type:</label><br>
+                                    <input style="color: black; padding: 5px; width: 100%;" type="text" name="usertype" value="{{ old('usertype', $user->usertype) }}" required>
                                 </div>
 
-                                <button style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-primary">Add User</button>
+                                <div>
+                                    <input style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" value="Save">
+                                </div>
                             </form>
-
                         </div>
                     </div>
                 </div>

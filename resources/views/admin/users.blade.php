@@ -1,3 +1,7 @@
+<x-app-layout>
+
+</x-app-layout>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,23 +32,7 @@
             margin-right: 10px;
         }
 
-        .search-container {
-            margin-bottom: 20px;
-        }
-
-        .search-container input[type="text"] {
-            width: 300px;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-
-        .search-container input[type="submit"] {
-            padding: 10px 20px;
-        }
-
-        table {
+       table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
@@ -71,57 +59,49 @@
             margin: 0 5px;
         }
 
-        /* Container styling */
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        /* Form styling */
+        /* Styles for the search form */
         .search-form {
-            display: flex;
-            align-items: center;
-            max-width: 600px;
-            /* Adjust based on your design */
-            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        /* Input field styling */
+        .input-group {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
         .search-input {
             flex: 1;
+            border: 1px solid #ced4da;
+            border-radius: 8px 0 0 8px;
             padding: 10px;
             font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-right: 10px;
-            transition: border-color 0.3s;
-        }
-
-        .search-input::placeholder {
-            color: #aaa;
+            outline: none;
+            transition: border-color 0.3s ease;
         }
 
         .search-input:focus {
-            border-color: #007bff;
-            /* Focus border color */
-            outline: none;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
         }
 
-        /* Button styling */
         .search-button {
+            border-radius: 0 8px 8px 0;
+            border: none;
             padding: 10px 20px;
             font-size: 16px;
-            border: none;
-            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .search-button:hover {
-            background-color: #0056b3;
-            /* Darker shade for hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #28a745;
+            color: white;
+        }
+
+        .search-button:focus {
+            outline: none;
         }
     </style>
 </head>
@@ -130,13 +110,18 @@
     <div class="container-scroller">
         @include("admin.navbar")
         <div class="container mt-2">
+            <br>
             <h1>Users</h1>
             <div class="search-container">
-                <form action="{{ url('/search') }}" method="get" class="search-form">
-                    @csrf
-                    <input type="text" name="search" placeholder="Search by User" class="search-input">
-                    <button type="submit" class="btn btn-success search-button">Search</button>
+                <form action="{{ url('/usersearch') }}" method="GET" class="search-form">
+                    <div class="input-group">
+                        <input type="text" name="search" placeholder="Search by User" class="search-input">
+                        <button type="submit" class="btn btn-success search-button">Search</button>
+                    </div>
                 </form>
+
+
+
             </div>
 
             <a href="{{ route('adduser') }}" class="btn btn-primary btn-sm">+ Add User</a>
@@ -156,7 +141,7 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>
-                                <a class="btn btn-success" href="{{ url('/editteuser', $user->id) }}" title="Edit">
+                                <a href="{{ route('edituser', $user->id) }}" class="btn btn-success">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>

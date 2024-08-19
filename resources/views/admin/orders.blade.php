@@ -167,6 +167,51 @@
         .btn:active {
             transform: translateY(0);
         }
+
+        /* Styles for the search form */
+        .search-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: 1px solid #ced4da;
+            border-radius: 8px 0 0 8px;
+            padding: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+        .search-button {
+            border-radius: 0 8px 8px 0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .search-button:focus {
+            outline: none;
+        }
     </style>
 </head>
 
@@ -176,12 +221,12 @@
 
         <div class="container mt-2">
             <h1>Customer Orders</h1>
-            <form action="{{ url('/search') }}" method="get">
-                @csrf
-                <input type="text" name="search" placeholder="Search by Name">
-                <input type="submit" value="Search" class="btn btn-success">
+            <form action="{{ url('/search') }}" method="GET" class="search-form">
+                <div class="input-group">
+                    <input type="text" name="search" placeholder="Search by Name" class="search-input">
+                    <button type="submit" class="btn btn-success search-button">Search</button>
+                </div>
             </form>
-
             <table>
                 <thead>
                     <tr>
@@ -212,10 +257,10 @@
                         </td>
                         <td>
                             <a class="btn btn-warning" href="{{ url('/on_the_way/' . $order->id) }}" title="On the way">
-                                <i class="fas fa-truck"></i> 
+                                <i class="fas fa-truck"></i>
                             </a>
                             <a class="btn btn-success" href="{{ url('/delivered/' . $order->id) }}" title="Delivered">
-                                <i class="fas fa-check-circle"></i> 
+                                <i class="fas fa-check-circle"></i>
                             </a>
                         </td>
 

@@ -1,138 +1,141 @@
+<x-app-layout>
+</x-app-layout>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+    <base href="/public">
+
     @include("admin.admincss")
 
     <style>
-        .container {
+         .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+
+        /* General form styling */
+        form {
             margin-top: 20px;
         }
 
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: block;
-            color: #333;
-        }
-
-        .form-group input {
+        .form-control {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: #000;
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* Label styling */
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Input field styling */
+        input[type="text"],
+        input[type="email"] {
+            background-color: #fff;
+            border: 1px solid #ced4da;
             border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: #000;
+            width: 100%;
         }
 
-        .form-group input:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-
-        .btn {
-            font-size: 16px;
-            padding: 12px 20px;
-            border-radius: 4px;
-            transition: background-color 0.3s, border-color 0.3s;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .form-group .error {
-            color: #dc3545;
-            font-size: 14px;
+        /* Error message styling */
+        .error {
+            color: red;
+            font-size: 0.875rem;
             margin-top: 5px;
         }
 
-        .form-group.success input {
-            border-color: #28a745;
+        /* Button styling */
+        .btn-primary {
+            background-color: #8a2be2;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 25%;
+            margin-top: 20px;
         }
 
-        .form-group.success .error {
-            display: none;
+        .btn-primary:hover {
+            background-color: #6f1c9b;
         }
 
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-
-        .alert-success {
-            color: #155724;
-            background-color: #d4edda;
-            border-color: #c3e6cb;
+        /* Error state styling for form group */
+        .has-error input[type="text"],
+        .has-error input[type="email"] {
+            border-color: red;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
         }
     </style>
 </head>
 
 <body>
+
     <div class="container-scroller">
-        @include("admin.navbar")
+        @include('admin.navbar')
 
-        <div class="container">
-            <h1 class="text-center">Add New Supplier</h1>
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title" style="color: black;">Add New Supplier</h2>
+                            <br>
+                            <form action="{{ route('admin.addsuppliers') }}" method="POST">
+                                @csrf
 
-            <div class="form-container">
-                @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
+                                <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="name">Supplier Name:</label>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="name" name="name" placeholder="Enter supplier name" value="{{ old('name') }}" required>
+                                    @if ($errors->has('name'))
+                                    <div class="error">{{ $errors->first('name') }}</div>
+                                    @endif
+                                </div>
+
+                                <div class="form-group {{ $errors->has('contact_info') ? 'has-error' : '' }}">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="contact_info">Contact Information:</label>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="contact_info" name="contact_info" placeholder="Enter contact information" value="{{ old('contact_info') }}" required>
+                                    @if ($errors->has('contact_info'))
+                                    <div class="error">{{ $errors->first('contact_info') }}</div>
+                                    @endif
+                                </div>
+
+                                <button style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-primary" type="submit" class="btn btn-primary">Add Supplier</button>
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
-                @endif
-
-                <form action="{{ route('admin.addsuppliers') }}" method="POST">
-                    @csrf
-
-                    <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                        <label for="name">Supplier Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter supplier name" value="{{ old('name') }}" required>
-                        @if ($errors->has('name'))
-                        <div class="error">{{ $errors->first('name') }}</div>
-                        @endif
-                    </div>
-
-                    <div class="form-group {{ $errors->has('contact_info') ? 'has-error' : '' }}">
-                        <label for="contact_info">Contact Information</label>
-                        <input type="text" id="contact_info" name="contact_info" placeholder="Enter contact information" value="{{ old('contact_info') }}" required>
-                        @if ($errors->has('contact_info'))
-                        <div class="error">{{ $errors->first('contact_info') }}</div>
-                        @endif
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Add Supplier</button>
-                </form>
             </div>
         </div>
-
-        @include("admin.adminscript")
     </div>
+
+    @include('admin.adminscript')
+
 </body>
 
 </html>

@@ -2,10 +2,16 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Required meta tags -->
     @include("admin.admincss")
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
         .container {
             margin-top: 20px;
         }
@@ -21,33 +27,31 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
-        th,
-        td {
+        table th,
+        table td {
             padding: 12px;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid #dee2e6;
         }
 
-        th {
-            background-color: black;
-            color: black;
-            font-weight: bold;
+        table th {
+            background-color: greenyellow;
+            color: #000;
         }
 
-        tr:nth-child(even) {
+        table tbody tr:nth-child(odd) {
             background-color: #f2f2f2;
         }
 
-        tr:hover {
-            background-color: #e9ecef;
+        .btn-success,
+        .btn-danger {
+            margin: 0 5px;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+
 
         .alert {
             padding: 15px;
@@ -77,44 +81,45 @@
             </div>
             @endif
 
-            <a href="{{ route('admin.addsuppliers') }}" class="btn btn-primary mb-3">Add Supplier</a>
+            <a href="{{ route('admin.addsuppliers') }}" class="btn btn-primary mb-3">+ Add Supplier</a>
 
-            <div class="table-container">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Contact Info</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($suppliers as $supplier)
-                        <tr>
-                            <td>{{ $supplier->id }}</td>
-                            <td>{{ $supplier->name }}</td>
-                            <td>{{ $supplier->contact_info }}</td>
-                            <td>
-                                <a href="{{ route('admin.edit', $supplier->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="mdi mdi-pencil"></i>
-                                </a>
-                                <form action="{{ route('admin.delete', $supplier->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="background-color: greenyellow; font-weight: bold; color: black;">ID</th>
+                        <th style="background-color: greenyellow; font-weight: bold; color: black;">Name</th>
+                        <th style="background-color: greenyellow; font-weight: bold; color: black;">Contact Info</th>
+                        <th style="background-color: greenyellow; font-weight: bold; color: black;">Actions</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach($suppliers as $supplier)
+                    <tr>
+                        <td>{{ $supplier->id }}</td>
+                        <td>{{ $supplier->name }}</td>
+                        <td>{{ $supplier->contact_info }}</td>
+                        <td>
+                            <a href="{{ route('admin.edit', $supplier->id) }}" class="btn btn-success btn-sm">
+                                <i class="mdi mdi-pencil"></i>
+                            </a>
+                            <form action="{{ route('admin.delete', $supplier->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="mdi mdi-delete"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        @include("admin.adminscript")
+    @include("admin.adminscript")
     </div>
 
     <script>

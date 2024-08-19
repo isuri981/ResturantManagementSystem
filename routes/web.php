@@ -17,7 +17,20 @@ Route::get("/", [HomeController::class, "index"]);
 
 Route::get('/users', [AdminController::class, 'user'])->name('users');
 
+
+
+// Show the form (GET request)
+Route::get('/adduser', [AdminController::class, 'showAddUserForm'])->name('showAddUserForm');
+
+// Handle form submission (POST request)
 Route::post('/adduser', [AdminController::class, 'adduser'])->name('adduser');
+
+
+Route::get('/edituser/{id}', [AdminController::class, 'editUser'])->name('edituser');
+Route::post('/updateuser/{id}', [AdminController::class, 'updateUser'])->name('updateuser');
+
+Route::get('/usersearch', [AdminController::class, 'usersearch'])->name('usersearch');
+
 
 Route::delete('/deletemenu/{id}', [AdminController::class, 'deletemenu'])->name('deletemenu');
 
@@ -82,7 +95,7 @@ Route::get('/myorders', [HomeController::class, 'myorders']);
 Route::get('/ingredients', [IngredientController::class, 'index']);
 
 
-Route::post('/adduser', [HomeController::class, 'store'])->name('adduser');
+// Route::post('/adduser', [HomeController::class, 'store'])->name('adduser');
 
 Route::prefix('admin')->middleware('auth', 'role:admin')->group(function () {
     Route::resource('suppliers', SupplierController::class);

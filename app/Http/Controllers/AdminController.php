@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
+
 use App\Models\User;
 
 use App\Models\Food;
@@ -30,18 +32,74 @@ class AdminController extends Controller
         return view("admin.users", compact('data'));
     }
 
-    public function adduser(Request $request)
+    // public function adduser(Request $request)
+    // {
+    //     $data = new User();
+
+    //     $data->name = $request->name;
+    //     $data->email = $request->email;
+    //     $data->usertype = $request->usertype; // Changed to 'usertype'
+
+    //     $data->save();
+
+    //     return redirect()->back();
+    // }
+
+
+    public function showAddUserForm()
     {
-        $data = new User();
-
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->usertype = $request->usertype; // Changed to 'usertype'
-
-        $data->save();
-
-        return redirect()->back();
+        return view('admin.adduser'); // Make sure you have this view
     }
+
+    public function addUser(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'usertype' => 'required|string|max:50',
+        ]);
+
+        // Create a new user
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'usertype' => $request->input('usertype'),
+            'password' => Hash::make('password123'), // Set a default password or handle this as needed
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'New user added successfully');
+    }
+
+
+
+    public function editUser($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.updateuser', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        // Validate the form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id, // Exclude current user's email from uniqueness check
+            'usertype' => 'required|string|max:255',
+        ]);
+
+        // Find the user by ID and update their details
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->usertype = $request->usertype;
+        $user->save();
+
+        // Redirect back with a success message
+        return redirect()->route('edituser', $id)->with('success', 'User updated successfully.');
+    }
+
 
     public function deleteuser($id)
     {
@@ -49,6 +107,21 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->back();
     }
+
+    public function usersearch(Request $request)
+    {
+        $searchTerm = $request->input('search'); // Correct input name
+
+        // Fetch users based on the search term
+        $data = User::where('name', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('email', 'LIKE', "%{$searchTerm}%")
+            ->get();
+
+        return view('admin.users', compact('data'));  // Adjust to your correct view
+    }
+
+
+
 
     public function deletemenu($id)
     {
@@ -320,8 +393,4 @@ class AdminController extends Controller
 
         return view("admin.recipes", compact("data"));
     }
-
-    
-
-    
 }
