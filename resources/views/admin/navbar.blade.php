@@ -135,7 +135,7 @@
         </li>
 
         <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('/documentation')}}">
+            <a class="nav-link" href="{{url('/analysisorders')}}">
                 <span class="menu-icon">
                     <i class="mdi mdi-file-document"></i>
                 </span>

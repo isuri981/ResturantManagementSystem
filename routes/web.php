@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\SupplierController;
 use App\Models\Ingredient;
@@ -120,8 +121,8 @@ Route::put('/suppliers/{id}', [SupplierController::class, 'update'])->name('admi
 Route::delete('/suppliers/{id}', [SupplierController::class, 'destroy'])->name('admin.delete');
 
 
-
-
+Route::get('/analysisorders', [OrderController::class, 'index']);
+Route::get('/analysisorders/search', [OrderController::class, 'search']);
 
 
 

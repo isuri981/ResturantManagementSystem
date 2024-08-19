@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Order;
+
 class OrderController extends Controller
 {
     public function placeOrder(Request $request)
@@ -15,5 +17,18 @@ class OrderController extends Controller
 
         // Assuming everything is successful, return a JSON response
         return response()->json(['message' => 'Order placed successfully!', 'ingredients' => $ingredients]);
+    }
+
+    public function index()
+    {
+        $orders = Order::all();
+        return response()->json($orders);
+    }
+
+    public function search(Request $request)
+    {
+        $searchQuery = $request->input('search');
+        $orders = Order::where('category', 'like', '%' . $searchQuery . '%')->get();
+        return response()->json($orders);
     }
 }
