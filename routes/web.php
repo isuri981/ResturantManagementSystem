@@ -121,6 +121,7 @@ Route::put('/suppliers/{id}', [SupplierController::class, 'update'])->name('admi
 Route::delete('/suppliers/{id}', [SupplierController::class, 'destroy'])->name('admin.delete');
 
 
+Route::get('/analysisorders-api', [OrderController::class, 'analysisorders_api']);
 Route::get('/analysisorders', [OrderController::class, 'index']);
 Route::get('/analysisorders/search', [OrderController::class, 'search']);
 

@@ -19,10 +19,16 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order placed successfully!', 'ingredients' => $ingredients]);
     }
 
-    public function index()
+    public function analysisorders_api()
     {
         $orders = Order::all();
         return response()->json($orders);
+    }
+
+    public function index()
+    {
+       
+        return view('admin.analysisorders');
     }
 
     public function search(Request $request)
