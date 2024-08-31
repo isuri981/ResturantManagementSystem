@@ -8,6 +8,8 @@ use App\Http\Controllers\SupplierController;
 use App\Models\Ingredient;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Mail;
+
 
 
 // Route::get('/', function () {
@@ -124,6 +126,19 @@ Route::delete('/suppliers/{id}', [SupplierController::class, 'destroy'])->name('
 Route::get('/analysisorders-api', [OrderController::class, 'analysisorders_api']);
 Route::get('/analysisorders', [OrderController::class, 'index']);
 Route::get('/analysisorders/search', [OrderController::class, 'search']);
+
+
+// Route::get('/test-email', function () {
+//     $order = \App\Models\Order::first(); // or use a specific order ID
+//     Mail::to($order->email)->send(new \App\Mail\OrderStatusChanged($order));
+//     return 'Test email sent!';
+// });
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
+
 
 
 

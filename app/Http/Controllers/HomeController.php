@@ -24,6 +24,10 @@ use App\Models\User;
 
 
 
+
+
+
+
 class HomeController extends Controller
 {
     public function index()
@@ -172,23 +176,26 @@ class HomeController extends Controller
         return view('stripe');
     }
 
-
-
     public function stripePost(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        try {
+            Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        Charge::create([
-            "amount" => 100 * 100,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Test payment from complete."
-        ]);
+            Charge::create([
+                "amount" => 100 * 100, // Amount in cents
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from Klassy Cafe."
+            ]);
 
-        Session::flash('success', 'Payment successful!');
-
-        return redirect()->back();
+            Session::flash('success', 'Payment successful!');
+            return back();
+        } catch (\Exception $e) {
+            Session::flash('error', $e->getMessage());
+            return back();
+        }
     }
+
 
     public function myorders()
     {

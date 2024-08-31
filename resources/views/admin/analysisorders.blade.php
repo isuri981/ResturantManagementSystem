@@ -1,6 +1,3 @@
-<x-app-layout>
-</x-app-layout>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +8,76 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     @include("admin.admincss")
+    <style>
+        /* Container for the search form */
+        .search-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        /* Style for the input field */
+        .search-input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Change border color on focus */
+        .search-input:focus {
+            border-color: #4CAF50;
+        }
+
+        /* Style for the search button */
+        .search-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Change background color on hover */
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Add a slight transform effect on active (click) */
+        .search-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Style for chart containers */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .chart-container {
+            max-width: 600px;
+            /* Reduced max width */
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        /* Make the canvas responsive */
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,20 +86,23 @@
 
         <div class="container">
             <h1>Orders Analysis</h1>
-            <form id="search-form">
-                <input type="text" id="search-input" placeholder="Search by Category">
-                <button type="submit">Search</button>
+            <form id="search-form" class="search-form">
+                <input type="text" id="search-input" placeholder="Search by Category" class="search-input">
+                <button type="submit" class="btn search-button">Search</button>
             </form>
-            <!-- <canvas id="revenueChart" width="400" height="200"></canvas>
-            Reduced size for the pie chart -->
-            <!-- <canvas id="categoryChart" width="100" height="100"></canvas>
-            <canvas id="statusChart" width="400" height="200"></canvas>
-            <canvas id="customerChart" width="400" height="200"></canvas> --> 
 
-            <canvas id="revenueChart" width="1398" height="699" style="display: block; box-sizing: border-box; height: 349px; width: 699px;"></canvas>
-            <canvas id="categoryChart" width="1398" height="699" style="display: block; box-sizing: border-box; height: 349px; width: 699px;"></canvas>
-            <canvas id="statusChart" width="1398" height="699" style="display: block; box-sizing: border-box; height: 349px; width: 699px;"></canvas>
-            <canvas id="customerChart" width="1398" height="699" style="display: block; box-sizing: border-box; height: 349px; width: 699px;"></canvas>
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="customerChart"></canvas>
+            </div>
         </div>
 
         <script>
@@ -118,6 +188,8 @@
                         }]
                     },
                     options: {
+                        maintainAspectRatio: false, // Enable responsive resizing
+                        aspectRatio: 2, // Control the width/height ratio
                         scales: {
                             y: {
                                 beginAtZero: true
@@ -154,9 +226,11 @@
                         }]
                     },
                     options: {
+                        maintainAspectRatio: false, // Enable responsive resizing
+                        aspectRatio: 1, // Adjust aspect ratio for a square shape
                         animation: {
-                            duration: 500, // Reduce the animation duration
-                            easing: 'easeOutQuad' // Change the easing option for a less fluid effect
+                            duration: 500,
+                            easing: 'easeOutQuad'
                         }
                     }
                 });
@@ -189,6 +263,8 @@
                         }]
                     },
                     options: {
+                        maintainAspectRatio: false, // Enable responsive resizing
+                        aspectRatio: 1, // Adjust aspect ratio for a square shape
                         animation: {
                             duration: 500,
                             easing: 'easeOutQuad'
@@ -210,6 +286,8 @@
                         }]
                     },
                     options: {
+                        maintainAspectRatio: false, // Enable responsive resizing
+                        aspectRatio: 1.5, // Adjust aspect ratio for a horizontal layout
                         indexAxis: 'y', // Makes the bar chart horizontal
                         scales: {
                             x: {
@@ -227,23 +305,7 @@
             }
 
             init();
-
-            document.getElementById('search-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const searchQuery = document.getElementById('search-input').value;
-                try {
-                    const response = await fetch(`/analysisorders/search?search=${searchQuery}`);
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    const data = await response.json();
-                    console.log('Fetched Search Data:', data); // Debugging: check if search data is fetched correctly
-                    const analysis = analyzeData(data);
-                    renderCharts(analysis);
-                } catch (error) {
-                    console.error('Error fetching search data:', error);
-                }
-            });
         </script>
-
     </div>
 </body>
 

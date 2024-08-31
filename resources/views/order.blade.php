@@ -266,6 +266,9 @@
                 <td>{{$order->payment_status}}</td>
                 <td>
                     <img height="100" width="100" src="/foodimage/1719994387.jpg">
+                    <img height="100" width="100" src="/foodimage/1719994275.jpeg">
+                    <img height="100" width="100" src="/foodimage/1719994182.jpg">
+
                 </td>
 
 

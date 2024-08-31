@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Order;
 
+
+use App\Mail\OrderStatusChanged;
+use Illuminate\Support\Facades\Mail;
+
 class OrderController extends Controller
 {
     public function placeOrder(Request $request)
@@ -27,7 +31,7 @@ class OrderController extends Controller
 
     public function index()
     {
-       
+
         return view('admin.analysisorders');
     }
 
@@ -37,4 +41,6 @@ class OrderController extends Controller
         $orders = Order::where('category', 'like', '%' . $searchQuery . '%')->get();
         return response()->json($orders);
     }
+
+    
 }

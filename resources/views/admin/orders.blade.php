@@ -1,3 +1,7 @@
+<x-app-layout>
+
+</x-app-layout>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -212,6 +216,22 @@
         .search-button:focus {
             outline: none;
         }
+
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            /* Red */
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .alert ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+    
+
     </style>
 </head>
 
@@ -221,12 +241,15 @@
 
         <div class="container mt-2">
             <h1>Customer Orders</h1>
-            <form action="{{ url('/search') }}" method="GET" class="search-form">
+            <form action="{{ url('/search') }}" method="GET" class="search-form" onsubmit="return validateSearch()">
                 <div class="input-group">
-                    <input type="text" name="search" placeholder="Search by Name" class="search-input">
+                    <input type="text" name="search" placeholder="Search by Name" class="search-input" id="search-input">
                     <button type="submit" class="btn btn-success search-button">Search</button>
                 </div>
             </form>
+
+            
+
             <table>
                 <thead>
                     <tr>
@@ -238,7 +261,7 @@
                         <th>Quantity</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>Change Status</th>
+                        <th>Payment Status</th>
                         <th>Print PDF</th>
                     </tr>
                 </thead>
@@ -275,9 +298,21 @@
                 </tbody>
             </table>
         </div>
+        @include("admin.adminscript")
     </div>
 
-    @include("admin.adminscript")
+    <script>
+        function validateSearch() {
+            var searchInput = document.getElementById('search-input').value;
+            if (searchInput.trim() === '') {
+                alert('Please enter a search term.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+
 </body>
 
 </html>

@@ -14,10 +14,14 @@ class Order extends Model
         'price',
         'quantity',
         'name',
+        'email',
         'phone',
         'address',
 
     ];
+
+    
+
 
     
 }

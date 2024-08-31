@@ -24,6 +24,13 @@ use App\Models\Documentation;
 
 use App\Models\recipes;
 
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\OrderStatusChanged;
+
+use Illuminate\Support\Facades\Log;
+
+
 class AdminController extends Controller
 {
     public function user()
@@ -319,15 +326,34 @@ class AdminController extends Controller
     //     return view('admin.orders', compact('data'));
     // }
 
+    // public function search(Request $request)
+    // {
+    //     $search = $request->search;
+
+    //     $data = order::where('name', 'Like', '%' . $search . '%')->orwhere('foodname', 'Like', '%' . $search . '%')
+    //         ->get();
+
+    //     return view('admin.orders', compact('data'));
+    // }
+
     public function search(Request $request)
     {
-        $search = $request->search;
+        // Validate the input
+        $request->validate([
+            'search' => 'required|string|max:255',
+        ]);
 
-        $data = order::where('name', 'Like', '%' . $search . '%')->orwhere('foodname', 'Like', '%' . $search . '%')
-            ->get();
+        // Proceed with search logic
+        $query = $request->input('search');
+        $data = Order::where('name', 'LIKE', '%' . $query . '%')->get();
+
+        if ($data->isEmpty()) {
+            return back()->with('error', 'No results found for your search query.');
+        }
 
         return view('admin.orders', compact('data'));
     }
+
 
     // public function on_the_way($id)
     // {
@@ -358,6 +384,9 @@ class AdminController extends Controller
         $data->payment_status = 'On the way';
         $data->save();
 
+        Mail::to($data->email)->send(new OrderStatusChanged($data));
+
+
         return redirect('/orders');
     }
 
@@ -373,6 +402,8 @@ class AdminController extends Controller
         $data->payment_status = 'Delivered';
 
         $data->save();
+
+        Mail::to($data->email)->send(new OrderStatusChanged($data));
 
         return redirect('/orders');
     }
@@ -393,4 +424,6 @@ class AdminController extends Controller
 
         return view("admin.recipes", compact("data"));
     }
+
+      
 }

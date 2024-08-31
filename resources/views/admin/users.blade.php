@@ -32,7 +32,7 @@
             margin-right: 10px;
         }
 
-       table {
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
@@ -113,15 +113,14 @@
             <br>
             <h1>Users</h1>
             <div class="search-container">
-                <form action="{{ url('/usersearch') }}" method="GET" class="search-form">
+                <form action="{{ url('/usersearch') }}" method="GET" class="search-form" onsubmit="return validateSearch()">
                     <div class="input-group">
-                        <input type="text" name="search" placeholder="Search by User" class="search-input">
+                        <input type="text" name="search" placeholder="Search by User" class="search-input" id="search-input">
                         <button type="submit" class="btn btn-success search-button">Search</button>
                     </div>
                 </form>
 
-
-
+              
             </div>
 
             <a href="{{ route('adduser') }}" class="btn btn-primary btn-sm">+ Add User</a>
@@ -163,6 +162,17 @@
         </div>
         @include("admin.adminscript")
     </div>
+
+    <script>
+        function validateSearch() {
+            var searchInput = document.getElementById('search-input').value.trim();
+            if (searchInput === '') {
+                alert('Please enter a search term.');
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
 </body>
 
 </html>
