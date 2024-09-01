@@ -30,6 +30,8 @@ use App\Mail\OrderStatusChanged;
 
 use Illuminate\Support\Facades\Log;
 
+use App\Models\Chef;
+
 
 class AdminController extends Controller
 {
@@ -130,21 +132,43 @@ class AdminController extends Controller
 
 
 
-    public function deletemenu($id)
+    // public function deletemenu($id)
+    // {
+    //     $data = food::find($id);
+
+    //     $data->delete();
+
+    //     return redirect()->back();
+    // }
+
+    public function deleteMenu(Request $request)
     {
-        $data = food::find($id);
-
-        $data->delete();
-
-        return redirect()->back();
+        $ids = $request->input('selected_items');
+        if ($ids) {
+            // Delete multiple food items
+            Food::whereIn('id', $ids)->delete();
+        }
+        return redirect()->back()->with('success', 'Selected items have been deleted successfully.');
     }
 
-    public function updateview($id)
-    {
-        $data = food::find($id);
 
-        return view("admin.updateview", compact("data"));
+    // public function updateview($id)
+    // {
+    //     $data = food::find($id);
+
+    //     return view("admin.updateview", compact("data"));
+    // }
+
+    public function updateview(Request $request)
+    {
+        $ids = explode(',', $request->query('ids'));
+        // Assuming you want to update the first item in the list
+        $data = Food::whereIn('id', $ids)->first(); // Get a single item (or handle differently if multiple)
+
+        return view('admin.updateview', compact('data'));
     }
+
+
 
     public function foodmenu()
     {
@@ -278,45 +302,87 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function updatechef($id)
-    {
-        $data = foodchef::find($id);
+    // public function updatechef($id)
+    // {
+    //     $data = foodchef::find($id);
 
-        return view("admin.updatechef", compact("data"));
+    //     return view("admin.updatechef", compact("data"));
+    // }
+
+    // public function updatefoodchef(Request $request, $id)
+    // {
+    //     $data = foodchef::find($id);
+
+    //     $image = $request->image;
+
+    //     if ($image) {
+
+    //         $imagename = time() . '.' . $image->getClientOriginalExtension();
+
+    //         $request->image->move('chefimage', $imagename);
+
+    //         $data->image = $imagename;
+    //     }
+
+
+    //     $data->name = $request->name;
+
+    //     $data->speciality = $request->speciality;
+
+    //     $data->save();
+
+    //     return redirect()->back();
+    // }
+
+    public function updateChef(Request $request)
+    {
+        $ids = $request->input('ids');
+        $idsArray = explode(',', $ids);
+        $data = foodchef::whereIn('id', $idsArray)->get();
+
+        // Assuming you want to update multiple chefs at once
+        return view('admin.updatechef', compact('data'));
     }
 
-    public function updatefoodchef(Request $request, $id)
+
+    public function updatefoodChef(Request $request, $id)
     {
-        $data = foodchef::find($id);
+        $ids = $request->input('ids');
 
-        $image = $request->image;
+        foreach ($ids as $id) {
+            $chef = foodchef::findOrFail($id);
 
-        if ($image) {
+            $chef->name = $request->input("name.$id");
+            $chef->speciality = $request->input("speciality.$id");
 
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            if ($request->hasFile("image.$id")) {
+                $imagePath = $request->file("image.$id")->store('chefimages', 'public');
+                $chef->image = basename($imagePath);
+            }
 
-            $request->image->move('chefimage', $imagename);
-
-            $data->image = $imagename;
+            $chef->save();
         }
 
-
-        $data->name = $request->name;
-
-        $data->speciality = $request->speciality;
-
-        $data->save();
-
-        return redirect()->back();
+        return redirect()->route('updatechef')->with('success', 'Chefs updated successfully.');
     }
 
-    public function deletechef($id)
+    // public function deletechef($id)
+    // {
+    //     $data = foodchef::find($id);
+
+    //     $data->delete();
+
+    //     return redirect()->back();
+    // }
+
+    public function deletechef(Request $request)
     {
-        $data = foodchef::find($id);
-
-        $data->delete();
-
-        return redirect()->back();
+        $ids = $request->input('selected_items');
+        if ($ids) {
+            // Delete multiple chef items
+            foodchef::whereIn('id', $ids)->delete();
+        }
+        return redirect()->back()->with('success', 'Selected items have been deleted successfully.');
     }
 
     // public function orders()
@@ -424,6 +490,4 @@ class AdminController extends Controller
 
         return view("admin.recipes", compact("data"));
     }
-
-      
 }

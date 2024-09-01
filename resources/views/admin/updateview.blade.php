@@ -31,6 +31,7 @@
                 <h1 style="font-style: bold;">Update Food Menu</h1>
 
                 <form action="{{ url('/update', $data->id) }}" method="post" enctype="multipart/form-data">
+   
 
                     @csrf
 
@@ -69,10 +70,24 @@
 
 
         </div>
+        @include("admin.adminscript")
 
     </div>
 
-    @include("admin.adminscript")
+    <script>
+        function editSelectedItems() {
+            const selectedItems = document.querySelectorAll('input[name="selected_items[]"]:checked');
+            if (selectedItems.length === 0) {
+                alert('Please select at least one item to edit.');
+                return;
+            }
+
+            const itemIds = Array.from(selectedItems).map(item => item.value);
+            window.location.href = `{{ url('/updateview') }}?ids=${itemIds.join(',')}`;
+        }
+    </script>
+
+
 
 
 

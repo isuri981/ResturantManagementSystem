@@ -1,89 +1,110 @@
 <x-app-layout>
-
 </x-app-layout>
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-
-  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-  
-
-
-  @include("admin.admincss")
-
-
-
+    @include("admin.admincss")
 </head>
 
 <body>
+    <div class="container-scroller">
+        @include("admin.navbar")
 
+        <div class="container mt-2">
+            <h1>Food Chefs</h1>
 
-  <div class="container-scroller">
+            <a class="btn btn-primary btn-sm" href="{{ route('AddChef') }}">+ Add Chef</a>
 
-    @include("admin.navbar")
+            <div style="position: relative; top: 30px; right: -100px">
+                <form id="bulk-action-form" action="{{ url('/deletechef') }}" method="POST">
+                    @csrf
+                    @method('POST')
 
-    <div class="container mt-2">
+                    <table>
+                        <tr align="center">
+                            <th>Select</th>
+                            <th>Chef Name</th>
+                            <th>Speciality</th>
+                            <th>Image</th>
 
-      <h1>Food Chefs</h1>
+                        </tr>
 
-      <a class="btn btn-primary btn btn-sm" href="{{ route('AddChef')}}">+Add Chef</a>
+                        @foreach($data as $item)
+                        <tr align="center">
+                            <td>
+                                <input type="checkbox" name="selected_items[]" value="{{ $item->id }}">
+                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->speciality }}</td>
+                            <td><img height="100" width="100" src="/chefimage/{{ $item->image }}"></td>
+                            <!-- <td>
+                                <a class="btn btn-success" href="{{ url('/updatechef', $item->id) }}" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" type="button" onclick="confirmDelete('{{ $item->id }}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <form id="delete-form-{{ $item->id }}" action="{{ url('/deletechef', $item->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </td> -->
+                        </tr>
+                        @endforeach
 
-      <div style="position: relative; top: 30px; right: -100px ">
+                        <!-- Add an extra row for the bulk actions buttons -->
+                        <tr align="center">
+                            <td colspan="6">
+                                <button type="button" class="btn btn-success mt-2" onclick="editSelectedItems()">
+                                    <i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="deleteSelectedItems()">
+                                    <i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
 
-        <table>
+        @include("admin.adminscript")
 
-          <tr align="center">
-            <th>Chef Name</th>
-            <th>Speciality</th>
-            <th>Image</th>
-            <th>Action</th>
-            <th>Action2</th>
-          </tr>
+        <script>
+            function confirmDelete(id) {
+                if (confirm('Are you sure you want to delete this item?')) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            }
 
-          @foreach($data as $data)
+            function editSelectedItems() {
+                const selectedItems = document.querySelectorAll('input[name="selected_items[]"]:checked');
+                if (selectedItems.length === 0) {
+                    alert('Please select at least one item to edit.');
+                    return;
+                }
 
-          <tr align="center">
+                const itemIds = Array.from(selectedItems).map(item => item.value);
+                window.location.href = `{{ url('/updatechef') }}?ids=${itemIds.join(',')}`;
+            }
 
-            <td>{{$data->name}}</td>
-            <td>{{$data->speciality}}</td>
-            <td><img height="100" width="100" src="/chefimage/{{$data->image}}"></td>
+            function deleteSelectedItems() {
+                const selectedItems = document.querySelectorAll('input[name="selected_items[]"]:checked');
+                if (selectedItems.length === 0) {
+                    alert('Please select at least one item to delete.');
+                    return;
+                }
 
-            <td>
-              <a class="btn btn-success" href="{{ url('/updatechef', $data->id) }}" title="Edit">
-                <i class="fas fa-edit"></i>
-              </a>
-            </td>
-
-            <td>
-              <a class="btn btn-danger" href="{{ url('/deletechef', $data->id) }}" title="Delete" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this item?')) { document.getElementById('delete-form-{{ $data->id }}').submit(); }">
-                <i class="fas fa-trash"></i>
-              </a>
-              <form id="delete-form-{{ $data->id }}" action="{{ url('/deletechef', $data->id) }}" method="POST" style="display: none;">
-                @csrf
-                @method('DELETE')
-              </form>
-            </td>
-
-
-          </tr>
-
-          @endforeach
-
-
-        </table>
-      </div>
-
+                if (confirm('Are you sure you want to delete the selected items?')) {
+                    document.getElementById('bulk-action-form').action = "{{ url('/deletechef') }}";
+                    document.getElementById('bulk-action-form').submit();
+                }
+            }
+        </script>
     </div>
-
-    @include("admin.adminscript")
-
-  </div>
 </body>
 
 </html>

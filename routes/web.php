@@ -35,7 +35,14 @@ Route::post('/updateuser/{id}', [AdminController::class, 'updateUser'])->name('u
 Route::get('/usersearch', [AdminController::class, 'usersearch'])->name('usersearch');
 
 
-Route::delete('/deletemenu/{id}', [AdminController::class, 'deletemenu'])->name('deletemenu');
+// Route::delete('/deletemenu/{id}', [AdminController::class, 'deletemenu'])->name('deletemenu');
+Route::delete('/deletemenu', [AdminController::class, 'deleteMenu']);
+
+
+Route::get('/updateview', [AdminController::class, 'updateview']);
+
+
+
 
 
 Route::get("/foodmenu", [AdminController::class, "foodmenu"])->name('foodmenu');
@@ -44,7 +51,7 @@ Route::post("/uploadfood", [AdminController::class, "upload"]);
 
 Route::get("/deleteuser/{id}", [AdminController::class, "deleteuser"]);
 
-Route::get("/updateview/{id}", [AdminController::class, "updateview"]);
+// Route::get("/updateview/{id}", [AdminController::class, "updateview"]);
 
 Route::post("/update/{id}", [AdminController::class, "update"]);
 
@@ -61,11 +68,26 @@ Route::get("/viewchef", [AdminController::class, "viewchef"]);
 
 Route::post("/uploadchef", [AdminController::class, "uploadchef"]);
 
-Route::get("/updatechef/{id}", [AdminController::class, "updatechef"]);
+// Route::get("/updatechef/{id}", [AdminController::class, "updatechef"]);
 
-Route::post("/updatefoodchef/{id}", [AdminController::class, "updatefoodchef"]);
+// Route::get('/updatechef', [AdminController::class, 'updatechef']);
 
-Route::get("/deletechef/{id}", [AdminController::class, "deletechef"]);
+// Route::post("/updatefoodchef/{id}", [AdminController::class, "updatefoodchef"]);
+
+// Route to display the update form for multiple chefs
+Route::get('/updatechef', [AdminController::class, 'updateChef'])->name('updatechefs');
+
+// Route to update multiple chefs (assuming it's a POST request)
+Route::post('/updatefoodchef', [AdminController::class, 'updatefoodChef'])->name('updatefoodchefs');
+
+// Route to update a single chef
+Route::post('/updatefoodchef/{id}', [AdminController::class, 'updatefoodChef'])->name('updatefoodchef');
+
+
+
+
+
+Route::post('/deletechef', [AdminController::class, 'deletechef'])->name('deletechef');
 
 Route::post("/addcart/{id}", [HomeController::class, "addcart"]);
 
