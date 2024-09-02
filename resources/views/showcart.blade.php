@@ -232,6 +232,48 @@
         .btn-danger:hover {
             background-color: #c82333;
         }
+
+        .showcase {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 90%;
+        }
+
+        /* QR Code container styling */
+        .qr_code_container {
+            margin: 0 auto;
+            display: inline-block;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* QR Code image styling */
+        .qr_code_img {
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 8px;
+        }
+
+        /* Text styling */
+        .showcase p {
+            font-size: 18px;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+        }
+
+        .qr_code_img {
+            max-width: 100%;
+            /* Ensure responsiveness */
+            height: auto;
+        }
     </style>
 
 </head>
@@ -304,6 +346,8 @@
         </div>
     </header>
 
+
+
     <br>
     <br>
 
@@ -375,6 +419,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -403,15 +448,15 @@
 
                         <div id="appear" align="center" style="padding: 10px; display:none;">
                             <div style="padding: 10px;">
-                                
+
                                 <input type="text" name="name" placeholder="Name" class="form-control">
                             </div>
                             <div style="padding: 10px;">
-                                
+
                                 <input type="number" name="phone" placeholder="Phone Number" class="form-control">
                             </div>
                             <div style="padding: 10px;">
-                                
+
                                 <input type="text" name="address" placeholder="Address" class="form-control">
                             </div>
                             <div style="padding: 10px;">

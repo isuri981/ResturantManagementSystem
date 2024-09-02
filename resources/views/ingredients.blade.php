@@ -172,13 +172,14 @@
             <img id="ingredientTomato" src="orderimages/tomato.png" alt="Tomato" class="ingredient-img">
             <img id="ingredientCheese" src="orderimages/cheese.png" alt="Cheese" class="ingredient-img">
             <img id="ingredientBellPepper" src="orderimages/bellpepper.png" alt="Bell Pepper" class="ingredient-img">
-            <img id="ingredientEgg" src="orderimages/egg.png" alt="Egg" class="ingredient-img">
+            
             <img id="ingredientGarlic" src="orderimages/garlic.png" alt="Garlic" class="ingredient-img">
             <img id="ingredientGreenChili" src="orderimages/greenchili.png" alt="Green Chili" class="ingredient-img">
             <img id="ingredientCarrots" src="orderimages/carrots.png" alt="Carrots" class="ingredient-img">
             <img id="ingredientCabbage" src="orderimages/cabbage.png" alt="Cabbage" class="ingredient-img">
             <img id="ingredientGreenBeans" src="orderimages/greenbeans.png" alt="Green Beans" class="ingredient-img">
             <img id="ingredientBlackPepper" src="orderimages/blackpepper.png" alt="Black Pepper" class="ingredient-img">
+            <img id="ingredientEgg" src="orderimages/egg.png" alt="Egg" class="ingredient-img">
             <img id="ingredientChicken" src="orderimages/chicken.png" alt="Chicken" class="ingredient-img">
             <img id="ingredientOnion" src="orderimages/onion.png" alt="Onion" class="ingredient-img">
             <img id="ingredientLeaks" src="orderimages/leaks.png" alt="Leaks" class="ingredient-img">
@@ -208,10 +209,7 @@
                 <img src="orderimages/sauce.png" alt="Sauce">
                 <p>Sauce</p>
             </div>
-            <div class="ingredient-option" data-ingredient="Egg">
-                <img src="orderimages/egg.png" alt="Egg">
-                <p>Egg</p>
-            </div>
+          
             <div class="ingredient-option" data-ingredient="Garlic">
                 <img src="orderimages/garlic.png" alt="Garlic">
                 <p>Garlic</p>
@@ -235,6 +233,10 @@
             <div class="ingredient-option" data-ingredient="BlackPepper">
                 <img src="orderimages/blackpepper.png" alt="Black Pepper">
                 <p>Black Pepper</p>
+            </div>
+            <div class="ingredient-option" data-ingredient="Egg">
+                <img src="orderimages/egg.png" alt="Egg">
+                <p>Egg</p>
             </div>
             <div class="ingredient-option" data-ingredient="Chicken">
                 <img src="orderimages/chicken.png" alt="Chicken">

@@ -22,7 +22,11 @@ use Stripe\Charge;
 
 use App\Models\User;
 
+use Endroid\QrCode\QrCode;
 
+use Endroid\QrCode\Writer\PngWriter;
+
+use App\Http\Controllers\Recipe;
 
 
 
@@ -197,17 +201,32 @@ class HomeController extends Controller
     }
 
 
+    // public function myorders()
+    // {
+
+    //     $user = Auth::user()->id;
+
+    //     $count = Cart::where('user_id', $user)->get()->count();
+
+    //     $order = Order::where('id', $user)->get();
+
+    //     return view('order', compact('count', 'order'));
+    // }
+
+
     public function myorders()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You need to be logged in to view your orders.');
+        }
 
         $user = Auth::user()->id;
-
-        $count = Cart::where('user_id', $user)->get()->count();
-
+        $count = Cart::where('user_id', $user)->count();
         $order = Order::where('id', $user)->get();
 
         return view('order', compact('count', 'order'));
     }
+
 
     public function store(Request $request)
     {
@@ -228,4 +247,9 @@ class HomeController extends Controller
         // Redirect or return response
         return redirect()->back()->with('success', 'User added successfully');
     }
+
+
+  
+
+   
 }
