@@ -10,22 +10,76 @@
     @include("admin.admincss")
 
     <style>
-        .card {
+        /* Card styling */
+
+        .card-body {
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            border-radius: 8px;
         }
 
+        /* Form control styling */
+        .form-control {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: #fff;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        /* Focus effect */
+        .form-control:focus {
+            border-color: #fff;
+            outline: none;
+
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #8a2be2;
+            border: none;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        .btn-primary:hover {
+            background-color: #6f1c9b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .btn-primary {
+                padding: 12px 0;
+            }
+        }
+
+        .card-body {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+
+        }
 
         /* General form styling */
         form {
-            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
         }
 
         .form-control {
             background-color: #fff;
+            /* Ensure input fields have a white background */
             border: 1px solid #ced4da;
             border-radius: 4px;
             padding: 10px 15px;
@@ -76,7 +130,7 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            width: 25%;
+            width: 50%;
             margin-top: 20px;
         }
 
@@ -103,7 +157,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title" style="color: black;">Update Supplier</h2>
-                            
+
 
                             <div class="form-container">
                                 @if(session('success'))
@@ -132,7 +186,7 @@
                                         @endif
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Update Supplier</button>
+                                    <button style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-primary" type="submit" class="btn btn-primary">Add Supplier</button>
                                 </form>
                             </div>
                         </div>

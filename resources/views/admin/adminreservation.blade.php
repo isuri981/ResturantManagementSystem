@@ -20,14 +20,20 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            /* Center the table horizontally */
         }
 
         table {
             width: 100%;
+            max-width: 1200px;
+            /* Optional: Set a maximum width for the table */
             border-collapse: collapse;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: center;
             border: 1px solid #ddd;

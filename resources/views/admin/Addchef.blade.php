@@ -6,9 +6,9 @@
 <html lang="en">
 
 <head>
+    <base href="/public">
     @include("admin.admincss")
     <style>
-        
         .form-container {
             position: relative;
             top: 60px;
@@ -74,49 +74,49 @@
 
 <body>
 
-<div class="container-scroller">
-    @include("admin.navbar")
+    <div class="container-scroller">
+        @include("admin.navbar")
 
-    <div class="form-container">
-        <h1>Add Chef</h1>
-        @if ($errors->any())
+        <div class="form-container">
+            <h1>Add Chef</h1>
+            @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
-        @endif
-        <form action="{{ url('/uploadchef') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div>
-                <label for="name">Name</label>
-                <input type="text" name="name" required placeholder="Enter name">
-                @error('name')
+            @endif
+            <form action="{{ url('/uploadchef') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" required placeholder="Enter name">
+                    @error('name')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div>
-                <label for="speciality">Speciality</label>
-                <input type="text" name="speciality" required placeholder="Enter speciality">
-                @error('speciality')
+                    @enderror
+                </div>
+                <div>
+                    <label for="speciality">Speciality</label>
+                    <input type="text" name="speciality" required placeholder="Enter speciality">
+                    @error('speciality')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div>
-                <label for="image">Image</label>
-                <input type="file" name="image" required>
-                @error('image')
+                    @enderror
+                </div>
+                <div>
+                    <label for="image">Image</label>
+                    <input type="file" name="image" required>
+                    @error('image')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div>
-                <input type="submit" value="Save">
-            </div>
-        </form>
+                    @enderror
+                </div>
+                <div>
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 
     @include("admin.adminscript")

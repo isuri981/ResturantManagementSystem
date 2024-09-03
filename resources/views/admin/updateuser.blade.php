@@ -1,7 +1,5 @@
 <x-app-layout>
-
 </x-app-layout>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,34 +11,66 @@
     @include("admin.admincss")
 
     <style>
-        /* Card styling */
-        .card {
+       
+
+        .card-body {
             background-color: #fff;
-            /* White background */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            border-radius: 8px;
+            
         }
 
+        /* General form styling */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+        }
 
-        /* Form control styling */
         .form-control {
+            background-color: #fff;
+            /* Ensure input fields have a white background */
             border: 1px solid #ced4da;
             border-radius: 4px;
             padding: 10px 15px;
             font-size: 1rem;
             color: #000;
-            /* Black text color */
             width: 100%;
             margin-bottom: 15px;
         }
 
-        /* Focus effect */
-        .form-control:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* Label styling */
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Input field styling */
+        input[type="text"],
+        input[type="email"] {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: #000;
+            width: 100%;
+        }
+
+        /* Error message styling */
+        .error {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: 5px;
         }
 
         /* Button styling */
@@ -52,7 +82,7 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            width: 100%;
+            width: 50%;
             margin-top: 20px;
         }
 
@@ -60,19 +90,17 @@
             background-color: #6f1c9b;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .btn-primary {
-                padding: 12px 0;
-            }
+        /* Error state styling for form group */
+        .has-error input[type="text"],
+        .has-error input[type="email"] {
+            border-color: red;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
         }
     </style>
-
 
 </head>
 
 <body>
-
 
     <div class="container-scroller">
         @include('admin.navbar')
@@ -102,27 +130,24 @@
                             </div>
                             @endif
 
-                            <br>
-                            <form action="{{ route('updateuser', $user->id) }}" method="POST" style="margin-top: 20px;">
+                            <form action="{{ route('updateuser', $user->id) }}" method="POST">
                                 @csrf
-                                <div style="margin-bottom: 15px;">
-                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;">Name:</label><br>
-                                    <input style="color: black; padding: 5px; width: 100%;" type="text" name="name" value="{{ old('name', $user->name) }}" required>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;"  for="name">Name:</label>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="name" name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
                                 </div>
 
-                                <div style="margin-bottom: 15px;">
-                                    <label style="font-weight: bold; text-align:left; color: #333; text-align: left; display: block; width: 100%;">Email:</label><br>
-                                    <input style="color: black; padding: 5px; width: 100%;" type="email" name="email" value="{{ old('email', $user->email) }}" required>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="email">Email:</label>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="email" id="email" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
                                 </div>
 
-                                <div style="margin-bottom: 15px;">
-                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;">User Type:</label><br>
-                                    <input style="color: black; padding: 5px; width: 100%;" type="text" name="usertype" value="{{ old('usertype', $user->usertype) }}" required>
+                                <div class="form-group">
+                                    <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="usertype">User Type:</label>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="usertype" name="usertype" class="form-control" value="{{ old('usertype', $user->usertype) }}" required>
                                 </div>
 
-                                <div>
-                                    <input style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" value="Save">
-                                </div>
+                                <button style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-primary">Save</button>
                             </form>
                         </div>
                     </div>

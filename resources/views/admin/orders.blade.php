@@ -1,5 +1,4 @@
 <x-app-layout>
-
 </x-app-layout>
 
 <!DOCTYPE html>
@@ -11,12 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Admin - Customer Orders</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
     @include("admin.admincss")
-
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -40,60 +35,83 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            /* Increased font size for better visibility */
             color: #333;
-            text-align: left;
             margin-bottom: 30px;
             font-weight: 300;
+            text-align: center;
         }
 
         form {
-            text-align: center;
             margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
         }
 
-        input[type="text"] {
+        .input-group {
+            display: flex;
+            max-width: 600px;
+            /* Increased max-width for better usability */
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            border: 1px solid #ced4da;
+            border-radius: 8px 0 0 8px;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 80%;
-            max-width: 400px;
-            margin-right: 10px;
-            font-size: 16px;
+            /* Increased padding for better input area */
+            font-size: 18px;
+            /* Increased font size for better readability */
+            outline: none;
+            transition: border-color 0.3s ease;
         }
 
-        input[type="submit"] {
+        .search-input:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+        .search-button {
+            border-radius: 0 8px 8px 0;
+            border: none;
+            padding: 12px 24px;
+            /* Increased padding for a more prominent button */
+            font-size: 18px;
+            /* Increased font size for better readability */
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
             background-color: #28a745;
             color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
         }
 
-        input[type="submit"]:hover {
+        .search-button:hover {
             background-color: #218838;
+            color: white;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            font-size: 16px;
+            font-size: 18px;
+            justify-content: center;
+            /* Increased font size for better readability */
         }
 
+      
         th,
         td {
-            padding: 15px;
+            padding: 20px;
+            /* Increased padding for better spacing */
             text-align: center;
             border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: greenyellow;
-            color: #000;
+            background-color: #007bff;
+            color: white;
             font-size: 18px;
             text-transform: lowercase;
         }
@@ -117,28 +135,27 @@
 
         .status.in-progress {
             color: #dc3545;
-            /* Red */
         }
 
         .status.on-the-way {
             color: #ffc107;
-            /* Yellow */
         }
 
         .status.delivered {
             color: #28a745;
-            /* Green */
         }
 
         .btn {
             display: inline-block;
-            padding: 8px 16px;
+            padding: 10px 20px;
+            /* Adjusted padding for better button size */
             border-radius: 4px;
             font-size: 14px;
             text-decoration: none;
             color: #fff;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            margin: 2px;
+            margin: 4px;
+            /* Adjusted margin for spacing between buttons */
         }
 
         .btn-info {
@@ -172,55 +189,9 @@
             transform: translateY(0);
         }
 
-        /* Styles for the search form */
-        .search-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .input-group {
-            display: flex;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .search-input {
-            flex: 1;
-            border: 1px solid #ced4da;
-            border-radius: 8px 0 0 8px;
-            padding: 10px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-        }
-
-        .search-button {
-            border-radius: 0 8px 8px 0;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .search-button:hover {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .search-button:focus {
-            outline: none;
-        }
-
         .alert {
             padding: 15px;
             background-color: #f44336;
-            /* Red */
             color: white;
             margin-bottom: 20px;
             border-radius: 5px;
@@ -230,26 +201,20 @@
             margin: 0;
             padding-left: 20px;
         }
-    
-
     </style>
 </head>
 
 <body>
     <div class="container-scroller">
         @include("admin.navbar")
-
         <div class="container mt-2">
             <h1>Customer Orders</h1>
             <form action="{{ url('/search') }}" method="GET" class="search-form" onsubmit="return validateSearch()">
                 <div class="input-group">
                     <input type="text" name="search" placeholder="Search by Name" class="search-input" id="search-input">
-                    <button type="submit" class="btn btn-success search-button">Search</button>
+                    <button type="submit" class="search-button">Search</button>
                 </div>
             </form>
-
-            
-
             <table>
                 <thead>
                     <tr>
@@ -262,7 +227,7 @@
                         <th>Total Price</th>
                         <th>Status</th>
                         <th>Payment Status</th>
-                        <th>Print PDF</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -286,13 +251,11 @@
                                 <i class="fas fa-check-circle"></i>
                             </a>
                         </td>
-
                         <td>
                             <a class="btn btn-primary" href="{{ url('/print_pdf/' . $order->id) }}" title="Download PDF">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -300,7 +263,6 @@
         </div>
         @include("admin.adminscript")
     </div>
-
     <script>
         function validateSearch() {
             var searchInput = document.getElementById('search-input').value;
@@ -311,8 +273,6 @@
             return true;
         }
     </script>
-
-
 </body>
 
 </html>

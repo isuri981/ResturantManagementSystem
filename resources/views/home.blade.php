@@ -81,10 +81,12 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="main-nav">
+
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
                             <img src="assets/images/klassy-logo.png" alt="Klassy Cafe Logo">
                         </a>
+                       
                         <!-- ***** Logo End ***** -->
 
                         <!-- ***** Menu Trigger ***** -->
@@ -98,7 +100,7 @@
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#about">About</a></li>
                             <li class="scroll-to-section"><a href="#menu">Menu</a></li>
-                            <li class="scroll-to-section"><a href="#chefs">Chefs</a></li>
+                            <li class="scroll-to-section"><a href="{{ url('/feedback') }}">Feedback</a></li>
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
                             <li class="scroll-to-section">
                                 <a href="{{ url('/myorders') }}">My Orders</a>
@@ -122,7 +124,7 @@
                             </li>
 
 
-                            <!-- Authentication Links -->
+                            
                             @if (Route::has('login'))
                             <li>
                                 @auth
@@ -134,7 +136,9 @@
                                 @endif
                                 @endauth
                             </li>
+
                             @endif
+
                         </ul>
                         <!-- ***** Menu End ***** -->
                     </nav>

@@ -7,6 +7,7 @@
 <html lang="en">
 
 <head>
+    <base href="/public">
     @include("admin.admincss")
 
     <style>
@@ -84,6 +85,15 @@
 
         <div class="form-container">
             <h1>Add Food Menu</h1>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{url('/uploadfood')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div>

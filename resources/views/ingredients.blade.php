@@ -331,7 +331,7 @@
                 const base = baseSelect.value;
                 if (base && selectedIngredients.length > 0) {
                     const ingredientsList = selectedIngredients.join('_');
-                    finalDishImage.src = `orderimages/${base}_${ingredientsList}.png`; // Adjust this line if needed
+                    finalDishImage.src = `orderimages/${base}_${ingredientsList}.png`; 
                     finalDishImage.style.display = 'block';
                 } else {
                     finalDishImage.style.display = 'none';

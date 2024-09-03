@@ -32,10 +32,22 @@
             margin-right: 10px;
         }
 
+        .table-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            /* Center the table horizontally */
+        }
+
         table {
             width: 100%;
+            max-width: 1200px;
+            /* Set a maximum width for the table */
             border-collapse: collapse;
-            margin-top: 20px;
         }
 
         table th,
@@ -120,7 +132,7 @@
                     </div>
                 </form>
 
-              
+
             </div>
 
             <a href="{{ route('adduser') }}" class="btn btn-primary btn-sm">+ Add User</a>

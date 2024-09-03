@@ -9,6 +9,7 @@ use App\Models\Ingredient;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\FeedbackController;
 
 
 
@@ -150,6 +151,17 @@ Route::get('/analysisorders', [OrderController::class, 'index']);
 Route::get('/analysisorders/search', [OrderController::class, 'search']);
 
 
+Route::get('/feedback', [FeedbackController::class, 'create'])->name('create');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('store');
+Route::get('/report', [FeedbackController::class, 'report'])->name('report');
+
+Route::get('/test/{text}', [FeedbackController::class, 'test']);
+
+
+
+
+
+
 // Route::get('/test-email', function () {
 //     $order = \App\Models\Order::first(); // or use a specific order ID
 //     Mail::to($order->email)->send(new \App\Mail\OrderStatusChanged($order));
@@ -159,8 +171,6 @@ Route::get('/analysisorders/search', [OrderController::class, 'search']);
 Route::controller(HomeController::class)->group(function () {
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');
-
-    
 });
 
 

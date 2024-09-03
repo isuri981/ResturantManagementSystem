@@ -10,61 +10,31 @@
     @include("admin.admincss")
 
     <style>
-         .card {
+        /* Card styling */
+
+        .card-body {
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            border-radius: 8px;
         }
 
-
-        /* General form styling */
-        form {
-            margin-top: 20px;
-        }
-
+        /* Form control styling */
         .form-control {
             background-color: #fff;
             border: 1px solid #ced4da;
             border-radius: 4px;
             padding: 10px 15px;
             font-size: 1rem;
-            color: #000;
+            color: #fff;
             width: 100%;
             margin-bottom: 15px;
         }
 
-        /* Form group styling */
-        .form-group {
-            margin-bottom: 15px;
-        }
+        /* Focus effect */
+        .form-control:focus {
+            border-color: #fff;
+            outline: none;
 
-        /* Label styling */
-        label {
-            font-weight: bold;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        /* Input field styling */
-        input[type="text"],
-        input[type="email"] {
-            background-color: #fff;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            padding: 10px 15px;
-            font-size: 1rem;
-            color: #000;
-            width: 100%;
-        }
-
-        /* Error message styling */
-        .error {
-            color: red;
-            font-size: 0.875rem;
-            margin-top: 5px;
         }
 
         /* Button styling */
@@ -72,11 +42,11 @@
             background-color: #8a2be2;
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 20px 30px;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            width: 25%;
+            width: 50%;
             margin-top: 20px;
         }
 
@@ -84,11 +54,41 @@
             background-color: #6f1c9b;
         }
 
-        /* Error state styling for form group */
-        .has-error input[type="text"],
-        .has-error input[type="email"] {
-            border-color: red;
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .btn-primary {
+                padding: 12px 0;
+            }
+        }
+
+        /* General styling for labels */
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+            display: block;
+            width: 100%;
+        }
+
+        /* General styling for input fields */
+        .form-group input {
+            background-color: #fff;
+            color: #fff;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .form-container {
+            position: relative;
+            top: 60px;
+            right: -150px;
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+
+            border-radius: 8px;
+            margin: 20px 0;
         }
     </style>
 </head>

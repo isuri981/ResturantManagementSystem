@@ -20,23 +20,32 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            /* Center the table horizontally */
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 18px;
+
+            /* Increase font size for better readability */
         }
 
         th,
         td {
-            padding: 12px;
+            padding: 16px;
+            /* Increase padding for more spacing */
             text-align: center;
             border: 1px solid #ddd;
         }
 
         th {
-            background-color: greenyellow;
-            color: black;
+            background-color: #007bff;
+            /* Changed to a more prominent color */
+            color: white;
+            /* Changed text color for better contrast */
             font-weight: bold;
         }
 
@@ -51,6 +60,8 @@
         h1 {
             color: #333;
             margin-bottom: 20px;
+            font-size: 2rem;
+            /* Increased font size for better visibility */
         }
     </style>
 </head>

@@ -5,19 +5,16 @@
 <html lang="en">
 
 <head>
-
     <base href="/public">
-
     @include("admin.admincss")
 
     <style>
         /* Card styling */
-        .card {
+
+        .card-body {
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            border-radius: 8px;
         }
 
         /* Form control styling */
@@ -27,16 +24,16 @@
             border-radius: 4px;
             padding: 10px 15px;
             font-size: 1rem;
-            color: #000;
+            color: #fff;
             width: 100%;
             margin-bottom: 15px;
         }
 
         /* Focus effect */
         .form-control:focus {
-            border-color: #007bff;
+            border-color: #fff;
             outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
         }
 
         /* Button styling */
@@ -44,11 +41,11 @@
             background-color: #8a2be2;
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 20px 30px;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            width: 25%;
+            width: 50%;
             margin-top: 20px;
         }
 
@@ -61,6 +58,36 @@
             .btn-primary {
                 padding: 12px 0;
             }
+        }
+
+        /* General styling for labels */
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+            display: block;
+            width: 100%;
+        }
+
+        /* General styling for input fields */
+        .form-group input {
+            background-color: #fff;
+            color: #fff;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .form-container {
+            position: relative;
+            top: 60px;
+            right: -150px;
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+
+            border-radius: 8px;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -99,20 +126,20 @@
                                 @csrf
                                 <div class="form-group">
                                     <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="name" class="form-label">Name:</label>
-                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required placeholder="Enter name">
                                 </div>
 
                                 <div class="form-group">
                                     <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="email" class="form-label">Email:</label>
-                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required placeholder="Enter email">
                                 </div>
 
                                 <div class="form-group">
                                     <label style="font-weight: bold; color: #333; text-align: left; display: block; width: 100%;" for="usertype" class="form-label">User Type:</label>
-                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="usertype" name="usertype" class="form-control" value="{{ old('usertype') }}" required>
+                                    <input style="background-color: #fff; color: black; padding: 5px; width: 100%;" type="text" id="usertype" name="usertype" class="form-control" value="{{ old('usertype') }}" required placeholder="Enter usertype">
                                 </div>
 
-                                <button style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-primary">Add User</button>
+                                <button style="background-color: #8a2be2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-primary" type="submit" class="btn btn-primary">Add User</button>
                             </form>
 
                         </div>
