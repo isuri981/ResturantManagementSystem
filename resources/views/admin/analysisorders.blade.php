@@ -111,7 +111,7 @@
                     const response = await fetch('http://127.0.0.1:8000/analysisorders-api');
                     if (!response.ok) throw new Error('Network response was not ok');
                     const data = await response.json();
-                    console.log('Fetched Data:', data); // Debugging: check if data is fetched correctly
+                    console.log('Fetched Data:', data); 
                     return data;
                 } catch (error) {
                     console.error('Error fetching data:', error);
